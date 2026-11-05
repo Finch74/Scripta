@@ -52,41 +52,11 @@ do {
     exit(EXIT_FAILURE)
 }
 
-/// Same rule as the app: Fountain extensions are screenplays, Markdown extensions are prose,
-/// anything else is sniffed from the content.
-let mode: DocumentMode = forcedMode ?? {
-    switch url.pathExtension.lowercased() {
-    case "fountain", "spmd": .screenplay
-    case "md", "markdown", "mdown", "mkd": .prose
-    default: FountainParser.looksLikeScreenplay(text) ? .screenplay : .prose
-    }
-}()
+let mode = forcedMode ?? DocumentMode.inferred(fromExtension: url.pathExtension, text: text)
 
 // MARK: - Analysis
 
-let ns = text as NSString
-let lines = mode == .screenplay ? FountainParser.parse(ns) : MarkdownParser.parse(ns)
-let outline = DocumentOutline.items(in: text, mode: mode)
-let characters = CharacterAnalysis.statistics(text: text, mode: mode)
-
-/// Words of the printable text only: comments, notes, title-page fields and code are left out.
-let words = lines.reduce(0) { total, line in
-    switch line.kind {
-    case .empty, .boneyard, .note, .titleField, .codeFence, .code, .pageBreak, .rule: total
-    default: total + TextLines.wordCount(ns, in: line.textRange)
-    }
-}
-let nonEmptyLines = lines.filter { $0.kind != .empty }.count
-let dialogueLines = lines.filter { $0.kind == .dialogue || $0.kind == .balloon }.count
-let title = lines.first { $0.kind == .titleField(key: "title") }
-    .map { ns.substring(with: $0.textRange).replacingOccurrences(of: "*", with: "") }
-
-func count(_ kind: (OutlineItem.Kind) -> Bool) -> Int { outline.filter { kind($0.kind) }.count }
-let scenes = count { if case .scene = $0 { true } else { false } }
-let sections = count { $0 == .section }
-let headings = count { $0 == .heading }
-let pages = count { $0 == .page }
-let panels = count { $0 == .panel }
+let stats = DocumentStatistics(text: text, mode: mode)
 
 // MARK: - Output
 
@@ -95,36 +65,36 @@ func row(_ label: String, _ value: Any) {
 }
 
 print("Scripta — \(url.lastPathComponent)")
-if let title, !title.isEmpty { print(title) }
+if let title = stats.title, !title.isEmpty { print(title) }
 print("")
 print("STATISTICHE")
 row("Modalità", mode.displayName)
-row("Parole", words)
-row("Caratteri", text.count)
-row("Righe non vuote", nonEmptyLines)
+row("Parole", stats.words)
+row("Caratteri", stats.characterCount)
+row("Righe non vuote", stats.nonEmptyLines)
 if mode == .screenplay {
-    row("Scene", scenes)
-    if sections > 0 { row("Sezioni", sections) }
+    row("Scene", stats.scenes)
+    if stats.sections > 0 { row("Sezioni", stats.sections) }
 } else {
-    row("Titoli", headings)
-    row("Tempo di lettura", "~\(max(1, Int((Double(words) / 230).rounded()))) min")
+    row("Titoli", stats.headings)
+    row("Tempo di lettura", "~\(stats.readingMinutes) min")
 }
-if pages > 0 || panels > 0 {
-    row("Tavole", pages)
-    row("Vignette", panels)
+if stats.pages > 0 || stats.panels > 0 {
+    row("Tavole", stats.pages)
+    row("Vignette", stats.panels)
 }
-if !characters.isEmpty {
-    row("Personaggi", characters.count)
-    row("Battute", characters.reduce(0) { $0 + $1.speeches })
-    row("Righe di dialogo", dialogueLines)
+if !stats.cast.isEmpty {
+    row("Personaggi", stats.cast.count)
+    row("Battute", stats.speeches)
+    row("Righe di dialogo", stats.dialogueLines)
 }
 
-if !characters.isEmpty {
+if !stats.cast.isEmpty {
     print("")
     print("PERSONAGGI")
-    let width = min(characters.map(\.name.count).max() ?? 0, 30)
-    for stat in characters {
-        let share = words > 0 ? Double(stat.words) / Double(words) * 100 : 0
+    let width = min(stats.cast.map(\.name.count).max() ?? 0, 30)
+    for stat in stats.cast {
+        let share = stats.share(of: stat)
         print("  " + stat.name.padding(toLength: width, withPad: " ", startingAt: 0)
               + "  \(stat.speeches) battute, \(stat.words) parole (\(String(format: "%.1f", share))%)")
     }
@@ -132,10 +102,10 @@ if !characters.isEmpty {
 
 print("")
 print("OUTLINE")
-if outline.isEmpty {
+if stats.outline.isEmpty {
     print("  (nessuna scena o titolo)")
 }
-for item in outline {
+for item in stats.outline {
     let indent = String(repeating: "  ", count: item.level + 1)
     let label = switch item.kind {
     case .scene(let number): "\(number). \(item.title)"

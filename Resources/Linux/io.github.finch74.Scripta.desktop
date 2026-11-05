@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Scripta
+GenericName=Editor di sceneggiature
+Comment=Sceneggiature (Fountain), prosa (Markdown) e script per fumetti
+Exec=scripta-gtk %F
+Icon=io.github.finch74.Scripta
+Terminal=false
+Categories=Office;WordProcessor;
+MimeType=text/markdown;text/plain;
+Keywords=fountain;screenplay;sceneggiatura;markdown;fumetti;
+StartupNotify=true
+StartupWMClass=io.github.finch74.Scripta

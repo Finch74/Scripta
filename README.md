@@ -1,6 +1,6 @@
 # Scripta
 
-Scripta è un editor di scrittura per macOS dedicato a **sceneggiature** (formato [Fountain](https://fountain.io/syntax)), **prosa** (Markdown) e **script per fumetti/graphic novel**. Il motore di parsing e analisi è una libreria Swift indipendente dall'interfaccia, quindi funziona anche su **Linux** tramite un'interfaccia a riga di comando.
+Scripta è un editor di scrittura per macOS dedicato a **sceneggiature** (formato [Fountain](https://fountain.io/syntax)), **prosa** (Markdown) e **script per fumetti/graphic novel**. Il motore di parsing e analisi è una libreria Swift indipendente dall'interfaccia, quindi funziona anche su **Linux**, sia con un'interfaccia grafica nativa (GTK 4) sia da riga di comando.
 
 **Repository:** [github.com/Finch74/Scripta](https://github.com/Finch74/Scripta) · **Download:** [ultima release](https://github.com/Finch74/Scripta/releases/latest)
 
@@ -18,6 +18,7 @@ cd Scripta
 - **Export** in PDF (US Letter o A4), HTML, Markdown e Fountain (solo macOS).
 - **Anteprima Quick Look** dei file `.fountain` nel Finder (solo macOS).
 - **CLI `scripta`** multi-piattaforma per statistiche e outline da terminale.
+- **GUI per Linux `scripta-gtk`** (GTK 4): editor con evidenziazione, outline navigabile, personaggi e statistiche.
 
 ## Struttura del progetto
 
@@ -26,14 +27,18 @@ Package.swift
 Sources/
 ├── ScriptaCore/   Libreria condivisa: parser Fountain/Markdown, outline, analisi personaggi (macOS + Linux)
 ├── ScriptaApp/    App macOS: interfaccia SwiftUI/AppKit, editor ed export (solo macOS)
-└── ScriptaCLI/    Eseguibile `scripta` (macOS + Linux)
+├── ScriptaCLI/    Eseguibile `scripta` (macOS + Linux)
+├── ScriptaGTK/    App Linux `scripta-gtk`: interfaccia GTK 4 (solo Linux)
+└── CGtk/          Modulo di sistema che espone GTK 4 a Swift (pkg-config `gtk4`)
 QuickLook/         Estensione Quick Look (macOS)
 Resources/         Info.plist del bundle dell'app
+Resources/Linux/   File .desktop, icona, install.sh e AppRun per la GUI Linux
 Examples/          File di esempio (.fountain, .md)
 build-app.sh       Build di Scripta.app (macOS)
 build-linux.sh     Build della CLI (Linux, ma funziona anche su macOS)
 package-dmg.sh     Pacchetto Scripta-macOS-arm64.dmg
 package-linux.sh   Pacchetto Scripta-Linux-x86_64.zip
+package-linux-gui.sh  Pacchetto Scripta-GUI-Linux-x86_64.tar.gz (e AppImage opzionale)
 ```
 
 | Prodotto SwiftPM | Target        | Piattaforme     |
@@ -41,13 +46,15 @@ package-linux.sh   Pacchetto Scripta-Linux-x86_64.zip
 | `ScriptaCore`    | `ScriptaCore` | macOS, Linux    |
 | `scripta`        | `ScriptaCLI`  | macOS, Linux    |
 | `ScriptaApp`     | `ScriptaApp`  | solo macOS      |
+| `scripta-gtk`    | `ScriptaGTK`  | solo Linux      |
 
-Il target `ScriptaApp` viene dichiarato in `Package.swift` solo quando si compila su macOS, quindi su Linux `swift build` compila soltanto la libreria e la CLI.
+Le due interfacce grafiche sono dichiarate in `Package.swift` in base al sistema su cui si compila: `ScriptaApp` solo su macOS, `ScriptaGTK` (con il modulo di sistema `CGtk`) solo su Linux. Entrambe usano `ScriptaCore` per parsing, outline, personaggi e statistiche (`DocumentStatistics`, condivisa anche con la CLI). Su Linux, `swift build` senza `--product` compila anche la GUI e richiede quindi GTK 4; `swift build --product scripta` compila solo la CLI.
 
 ## Requisiti
 
 - **macOS**: macOS 15 o successivo, Apple Silicon, Xcode o Command Line Tools con Swift 6.0+.
 - **Linux**: toolchain Swift 6.0+ ([swift.org/install](https://www.swift.org/install/)).
+- **GUI Linux**: in più, GTK 4.6 o successivo con i file di sviluppo e `pkg-config` (Ubuntu 22.04+, Debian 12+, Fedora 36+).
 
 ## Compilare l'app su macOS
 
@@ -135,14 +142,47 @@ OUTLINE
 
 Per i file di prosa la CLI riporta il numero di titoli e una stima del tempo di lettura. Se il file contiene tavole e vignette, ne riporta anche il conteggio.
 
+## Compilare e usare la GUI su Linux (GTK 4)
+
+`scripta-gtk` è l'interfaccia grafica nativa per Linux. È scritta in Swift e chiama direttamente l'API C di GTK 4 attraverso il modulo `CGtk`, senza dipendenze esterne. Tutta la logica (parsing Fountain/Markdown, outline, analisi dei personaggi, statistiche) viene da `ScriptaCore`.
+
+Installa prima GTK 4 e `pkg-config`:
+
+```bash
+sudo apt install libgtk-4-dev pkg-config     # Debian/Ubuntu
+sudo dnf install gtk4-devel pkgconf-pkg-config   # Fedora
+```
+
+Poi compila e avvia:
+
+```bash
+swift build -c release --product scripta-gtk
+.build/release/scripta-gtk Examples/Esempio.fountain
+```
+
+Funzionalità della GUI:
+
+- editor con evidenziazione della sintassi e impaginazione da sceneggiatura (personaggi, dialoghi e transizioni rientrati), aggiornata mentre scrivi;
+- barra laterale con **Outline** (clic su una voce per raggiungerla), **Personaggi** e **Statistiche**, gli stessi dati della CLI;
+- scelta della modalità (Sceneggiatura/Prosa), dedotta all'apertura dall'estensione o dal contenuto;
+- apertura e salvataggio con richiesta di conferma per le modifiche non salvate; ogni file passato da riga di comando si apre in una finestra separata;
+- scorciatoie: `Ctrl+N` nuova finestra, `Ctrl+O` apri, `Ctrl+S` salva, `Ctrl+Shift+S` salva con nome, `Ctrl+Q` esci.
+
+L'export PDF/HTML resta per ora esclusivo dell'app macOS.
+
+La GUI si appoggia a GTK 4.6, la versione di Ubuntu 22.04 (la base dell'immagine Docker `swift:6.0`). Alcune API usate (`GtkFileChooserNative`, `GtkMessageDialog`) sono deprecate nelle versioni successive di GTK ma continuano a funzionare.
+
 ## Pacchetti di distribuzione
 
-Ogni release pubblicata nella pagina [Releases](https://github.com/Finch74/Scripta/releases) fornisce due pacchetti pronti all'uso. I link qui sotto puntano sempre all'ultima release:
+Ogni release pubblicata nella pagina [Releases](https://github.com/Finch74/Scripta/releases) fornisce tre pacchetti pronti all'uso. I link qui sotto puntano sempre all'ultima release:
 
 | Pacchetto | Contenuto | Piattaforma |
 |-----------|-----------|-------------|
 | [`Scripta-macOS-arm64.dmg`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-macOS-arm64.dmg) | `Scripta.app` + collegamento ad Applicazioni | macOS 15+, Apple Silicon |
 | [`Scripta-Linux-x86_64.zip`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-Linux-x86_64.zip) | eseguibile `scripta` + cartella `Examples/` | Linux x86_64 (glibc) |
+| [`Scripta-GUI-Linux-x86_64.tar.gz`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-GUI-Linux-x86_64.tar.gz) | GUI `scripta-gtk`, file `.desktop`, icona, `install.sh`, `Examples/` | Linux x86_64 (glibc) con GTK 4.6+ |
+
+Se la release include anche `Scripta-GUI-x86_64.AppImage`, è la stessa GUI in un singolo file eseguibile (richiede comunque GTK 4 installato nel sistema).
 
 Per una versione specifica sostituisci `latest/download` con `download/<tag>`. Per esempio:
 `https://github.com/Finch74/Scripta/releases/download/v1.0.0/Scripta-macOS-arm64.dmg`
@@ -169,6 +209,20 @@ cd Scripta-Linux-x86_64
 ./scripta Examples/Esempio.fountain
 sudo install -m 755 scripta /usr/local/bin/scripta   # opzionale
 ```
+
+**Linux, GUI.** Anche qui il runtime Swift è incluso; serve invece GTK 4, già presente nei desktop GNOME recenti (altrimenti `sudo apt install libgtk-4-1` o `sudo dnf install gtk4`).
+
+```bash
+tar -xzf Scripta-GUI-Linux-x86_64.tar.gz
+cd Scripta-GUI-Linux-x86_64
+./scripta-gtk Examples/Esempio.fountain   # prova senza installare
+./install.sh                              # installa in ~/.local con voce nel menu delle applicazioni
+./install.sh --uninstall                  # rimuove
+```
+
+Per installarla per tutti gli utenti: `sudo PREFIX=/usr/local ./install.sh`.
+
+L'AppImage si avvia direttamente: `chmod +x Scripta-GUI-x86_64.AppImage && ./Scripta-GUI-x86_64.AppImage`.
 
 ### Generare i pacchetti
 
@@ -200,16 +254,31 @@ USE_DOCKER=1 ./package-linux.sh            # forza Docker anche su Linux
 
 La build Linux usa la cartella `.build-linux/`, separata da `.build/`, così non interferisce con la build macOS.
 
+**Archivio della GUI per Linux** (ed eventuale AppImage):
+
+```bash
+./package-linux-gui.sh              # crea build/Scripta-GUI-Linux-<arch>.tar.gz
+APPIMAGE=1 ./package-linux-gui.sh   # crea anche build/Scripta-GUI-<arch>.AppImage
+```
+
+- **Su Linux** usa la toolchain Swift locale e richiede GTK 4 con i file di sviluppo (`libgtk-4-dev`) e `pkg-config`.
+- **Su macOS (o altri sistemi)** compila con Docker per `linux/amd64`. La prima volta lo script crea l'immagine locale `scripta-gtk-builder` (l'immagine `swift:6.0` più `libgtk-4-dev`); le volte successive la riusa.
+- Il runtime Swift e Foundation sono collegati staticamente, GTK 4 dinamicamente: il sistema di destinazione deve avere GTK 4.6+. Neanche l'AppImage include GTK.
+- Con `APPIMAGE=1` lo script scarica [appimagetool](https://github.com/AppImage/appimagetool) (serve la rete) e lo esegue senza FUSE, quindi anche dentro Docker. Su Linux puoi indicarne uno già installato con `APPIMAGETOOL=/percorso/appimagetool`.
+- Valgono anche qui `SWIFT_IMAGE` e `USE_DOCKER=1`. La build usa la cartella `.build-linux-gui/`.
+
 ### Pubblicare una release
 
-I link di download funzionano solo se i file allegati alla release hanno esattamente i nomi `Scripta-macOS-arm64.dmg` e `Scripta-Linux-x86_64.zip`. Sono i nomi che producono gli script. Per esempio, con la [GitHub CLI](https://cli.github.com):
+I link di download funzionano solo se i file allegati alla release hanno esattamente i nomi `Scripta-macOS-arm64.dmg`, `Scripta-Linux-x86_64.zip` e `Scripta-GUI-Linux-x86_64.tar.gz`. Sono i nomi che producono gli script. Per esempio, con la [GitHub CLI](https://cli.github.com):
 
 ```bash
 ./package-dmg.sh
 ./package-linux.sh
+APPIMAGE=1 ./package-linux-gui.sh
 git tag v1.0.0 && git push origin v1.0.0
 gh release create v1.0.0 --repo Finch74/Scripta --title "Scripta 1.0.0" --generate-notes \
-    build/Scripta-macOS-arm64.dmg build/Scripta-Linux-x86_64.zip
+    build/Scripta-macOS-arm64.dmg build/Scripta-Linux-x86_64.zip \
+    build/Scripta-GUI-Linux-x86_64.tar.gz build/Scripta-GUI-x86_64.AppImage
 ```
 
 ## Usare ScriptaCore in un altro progetto
@@ -225,4 +294,5 @@ import ScriptaCore
 
 let outline = DocumentOutline.items(in: text, mode: .screenplay)
 let characters = CharacterAnalysis.statistics(text: text, mode: .screenplay)
+let stats = DocumentStatistics(text: text, mode: .screenplay)   // parole, scene, outline, personaggi…
 ```

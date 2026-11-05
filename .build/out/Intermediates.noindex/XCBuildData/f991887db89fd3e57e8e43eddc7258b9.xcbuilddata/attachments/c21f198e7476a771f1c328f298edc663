@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/scripta-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/scripta-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/scripta-primary-emit-module.dia",
+    "pch" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/scripta-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/scripta-primary.swiftdeps"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCLI/main.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/scripta-p.build/Objects-normal/arm64/main~partial.swiftmodule"
+  }
+}

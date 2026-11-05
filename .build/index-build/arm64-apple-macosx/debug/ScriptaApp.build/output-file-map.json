@@ -1,0 +1,125 @@
+{
+  "": {
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/primary.swiftdeps"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/AppTheme.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/AppTheme.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/AppTheme.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/AppTheme~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/AppTheme.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/AppTheme.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/CharacterAnalysisView.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterAnalysisView.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterAnalysisView.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterAnalysisView~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterAnalysisView.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterAnalysisView.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/CharacterProfiles.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterProfiles.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterProfiles.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterProfiles~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterProfiles.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/CharacterProfiles.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/EditorPreferences.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorPreferences.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorPreferences.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorPreferences~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorPreferences.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorPreferences.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/EditorView.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorView.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorView.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorView~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorView.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorView.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/ScriptaApp.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaApp.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaApp.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaApp~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaApp.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaApp.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/ScriptaDocument.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaDocument.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaDocument.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaDocument~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaDocument.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptaDocument.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/DocumentPreview.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentPreview.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentPreview.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentPreview~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentPreview.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentPreview.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorFormatting.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorFormatting.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorFormatting.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorFormatting~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorFormatting.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorFormatting.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorSnapshot.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorSnapshot.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorSnapshot.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorSnapshot~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorSnapshot.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorSnapshot.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorStyle.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorStyle.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorStyle.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorStyle~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorStyle.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/EditorStyle.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/ScriptEditor.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptEditor.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptEditor.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptEditor~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptEditor.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ScriptEditor.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/SyntaxHighlighter.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/SyntaxHighlighter.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/SyntaxHighlighter.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/SyntaxHighlighter~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/SyntaxHighlighter.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/SyntaxHighlighter.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ContentTypes.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ContentTypes.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ContentTypes.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ContentTypes~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ContentTypes.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ContentTypes.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/DocumentExporter.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentExporter.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentExporter.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentExporter~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentExporter.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/DocumentExporter.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ExportOptions.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportOptions.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportOptions.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportOptions~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportOptions.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportOptions.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ExportTemplates.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportTemplates.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportTemplates.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportTemplates~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportTemplates.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/ExportTemplates.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/HTMLRenderer.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/HTMLRenderer.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/HTMLRenderer.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/HTMLRenderer~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/HTMLRenderer.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/HTMLRenderer.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/PDFExporter.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/PDFExporter.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/PDFExporter.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/PDFExporter~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/PDFExporter.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/PDFExporter.dia"  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/main.swift": {
+    "dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/main.d",
+    "object": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/main.swift.o",
+    "swiftmodule": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/main.swiftdeps",
+    "diagnostics": "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/main.dia"  }
+}

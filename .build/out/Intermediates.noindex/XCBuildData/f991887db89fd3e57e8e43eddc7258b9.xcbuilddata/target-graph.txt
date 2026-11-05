@@ -1,0 +1,13 @@
+Target dependency graph (5 targets)
+Target 'AllExcludingTests' in project 'Aggregate'
+➜ Explicit dependency on target 'ScriptaCore-product' in project 'Scripta'
+➜ Explicit dependency on target 'scripta-product' in project 'Scripta'
+➜ Explicit dependency on target 'ScriptaApp-product' in project 'Scripta'
+➜ Explicit dependency on target 'ScriptaCore' in project 'Scripta'
+Target 'ScriptaApp-product' in project 'Scripta'
+➜ Explicit dependency on target 'ScriptaCore' in project 'Scripta'
+Target 'scripta-product' in project 'Scripta'
+➜ Explicit dependency on target 'ScriptaCore' in project 'Scripta'
+Target 'ScriptaCore-product' in project 'Scripta'
+➜ Explicit dependency on target 'ScriptaCore' in project 'Scripta'
+Target 'ScriptaCore' in project 'Scripta' (no dependencies)

@@ -1,0 +1,751 @@
+[
+  {
+    "isFramework" : true,
+    "moduleName" : "Accessibility",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Accessibility-3UNFX2NPI45HD.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "AppKit",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/AppKit-2NIWZA16FDH34.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "ColorSync",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ColorSync-3OZ46GP5GDKCN.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Combine",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Combine-7M2IV4NLPO6.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreAudio",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudio-2LKN17OU1NLSJ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreData",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreData-1O9G3ALC37D5F.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreFoundation-1E5SR79VNRYK9.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreGraphics",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreGraphics-3KUMMODV1Z9N8.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreImage",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreImage-2EO4JXNIH14YZ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreMedia",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreMedia-DKHEO60XO3MJ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreText",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreText-3W1YQHPP5ZOAZ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreTransferable",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreTransferable-JQWDGO3ZEYI.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreVideo",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreVideo-19I2KIRVEJ9J6.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Darwin",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Darwin-3VGMQP7YQMTC1.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DataDetection",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/DataDetection-8CEAO0JU8Y93.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DeveloperToolsSupport",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-CV6KXPYIRF44.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Dispatch",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Dispatch-3UCWZRFVWEWHE.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Distributed",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Distributed-29ZQFB9ZSX929.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Foundation",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Foundation-14U43LSY4A1G5.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "IOKit",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/IOKit-2BYXOCOVW0FQZ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "ImageIO",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ImageIO-28E959H7RXPM.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Metal",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Metal-OLB9UAWJUIEN.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Network",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Network-1ILBGRWXPPJ4N.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "OSLog",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/OSLog-23RZGK30JZI6Y.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ObjectiveC-2SR3AAMFLRMPR.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Observation",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Observation-3E6EBDMCH17BE.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "PDFKit",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/PDFKit-1LVWAQ4H5W9AX.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "QuartzCore",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/QuartzCore-2XHSGZ4EG4WK.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "ScriptaCore",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/Products\/Debug\/ScriptaCore.swiftmodule\/arm64-apple-macos.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Spatial",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Spatial-ERUHF4HTTF53.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Swift",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Swift-9TBYBPCN8UJ3.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "SwiftOnoneSupport",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftOnoneSupport-DVPI608X2I0T.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUI",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUI-3KDG1ZNNFWNWW.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUICore",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUICore-YJ6RAZZ9G12E.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Symbols",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Symbols-33I7PZL311TAQ.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Synchronization",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Synchronization-PXLBN2EF6MN2.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "System",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/System-62OMTW1MM4M6.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-2D82ZUTR6RV5C.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "WebKit",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/WebKit-2H65Y9AMWZ2FA.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "XPC",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/XPC-22JOESG0RBQ83.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_float-203863YNEGMI3.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Concurrency",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Concurrency-3VV4YGNZNNXTK.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-3QYPXP03BBLOU.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-28PDJTWWHYXMJ.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-3FJONZVQIOFLX.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_StringProcessing",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_StringProcessing-KDNWJ5K4MG3N.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "_WebKit_SwiftUI",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_WebKit_SwiftUI-2LCM4V9CZEC2D.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "os",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/os-3NAQT6Y3O36Y1.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "simd",
+    "modulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/simd-K83W3KXWUHCZ.swiftmodule"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Accessibility-A1FKK9RV9MYFIK5V6YZGYEY1S.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Accessibility"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/AppKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/AppKit-1U0JPXFZFASJ99TKOTUDHE6GJ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AppKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/ApplicationServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ApplicationServices-655M3J6XGGVXARXE0O1FA9T9G.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ApplicationServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CFNetwork-3RK7POSFZSA5DSXUOSKFQB5BS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CFNetwork"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/cups.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CUPS-AJVYE4YSBQ6NM6ZI0VDK6K64V.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CUPS"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Cocoa.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Cocoa-4SKGV50ZG9ZMN56PP9AD41LMM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Cocoa"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/ColorSync.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ColorSync-A0OV6ATRWA6JAP41ECRPTYFQ0.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ColorSync"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudio-3QYKLWNFBPZ2LD52ZAVR6D21F.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudioTypes-73VEETHKJAVCD717D48J0BR27.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudioTypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreData-ATZ3LGH09BS9R74EJ4Q28YUSE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreData"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreFoundation-8KDBS187YGLRNAX46V2UUCFUS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreGraphics-8J9MG78OLLNQCPJUEHOTDPT98.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreGraphics"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreImage-68GZO7PK2IAIYQHOII4QY93FU.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreImage"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreMedia-8S727L9EIOSJ2CKFYZ1ZV05WS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMedia"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreServices-B8IFR3WDQRHH75ZHKLGOJQD4C.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreText-59DCB9RR83KFJYF3OBIFRRW31.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreText"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreTransferable-E0N7QZRRROYI8W8BWHK264W8M.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreTransferable"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/CoreVideo-6025DLS31OS8BIU2L3SF3KDZO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreVideo"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/Darwin.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Darwin-8I5GP3V99HEFMWP4XL75SV3XT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Darwin"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/DataDetection-5R5AVUU18ZMGNB7SCUIXC2DJZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DataDetection"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-3LAEZ0KD649CIVOWKBAR3ULTI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DeveloperToolsSupport"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/DiskArbitration.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/DiskArbitration-D7QVEBYBXL5X9LR1BG6264UQE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DiskArbitration"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/dispatch.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Dispatch-1O45OD5CHS462R2M380UWWYXF.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Dispatch"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Foundation-4GKQN99MLPJYNYF0ZQ5I6BXDD.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Foundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/IOKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/IOKit-1PE4DYTCS7FAY2VNU40ZXT0EV.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/IOSurface-1QZ3ZEETIRYSXSZYQTVD7MMAK.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOSurface"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ImageIO-DQDQ0ZNEISEIC4S32GFDDFETO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ImageIO"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Cryptexes\/OS\/System\/Library\/Frameworks\/JavaScriptCore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/JavaScriptCore-DZVU5R2LKO3ZSYD08U7WHDM5J.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "JavaScriptCore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinBasic.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/MachO-8A4S9NSF6T8M9ANXOFFDO68HG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MachO"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Metal-216NGO2ZPL5G10CNFKZGGCQ21.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Metal"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Network.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Network-6L7LUENHGAMXNOU1N330NS4TX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Network"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/OSLog-63U5WQKP5JUAKZIVP5PL9BJ39.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OSLog"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/ObjectiveC.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ObjectiveC-6T1IM2ELP15CVZCT6UZLHYSE9.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/OpenGL.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/OpenGL-7J74VDOGO0HNIHSEYKMGEAW2Q.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OpenGL"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/PDFKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/PDFKit-2T51RLEYJE77DT3PDDFD6WENE.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "PDFKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/QuartzCore-F0LXQR634577GP62UZ6PHZ7SB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "QuartzCore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Security-B9HQNN59KOUQ81AKZTK5MZLO7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Security"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/Spatial\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Spatial-30RNC98YRKA8C84ETEIKW5VXF.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Spatial"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftShims-D8SVZW6M16K9C8HY5UJS7DIEB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUI-E8PT3NYLC3G18KSADTIRXUR3D.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUI"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUICore-EOBJP0EGO3N714XJCZT03VPXM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUICore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/Symbols-3C8BOND4G9BIFTQXH0HMZ1K54.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Symbols"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-DVAS718GO3KOT24VDVKMXI0JD.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/System\/Cryptexes\/OS\/System\/Library\/Frameworks\/WebKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/WebKit-39KQY0B9NXZJKO5D2A4305RJG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "WebKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/xpc.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/XPC-BPOVB651EVN9NK1USEYEKVSCM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "XPC"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_AvailabilityInternal-CG4SJFTR0FM7FRUP5FXDC8V0W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_AvailabilityInternal"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_float-CDIIKCUNGCZ1WDAD9MKPGI3W1.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_intrinsics-560A2LGYJHEWL8W8BZYOEM0B2.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_intrinsics"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_inttypes-BUPFYC2U8N2ZVP0MS687STD62.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_inttypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_limits-61V2EDV1I5UY7873N0Q86E8HD.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_limits"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdarg-4P6OIHM0YKOWS07QQM3FMW88W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdarg"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdatomic-57RZIJZ29OFIKM38O723KID5N.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdatomic"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdbool-F46M0XAI7B5LJYC7IP2NUWZV8.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdbool"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stddef-1GVZBDM1E180XICTNYD5KF1KW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stddef"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdint-37XJSGU2LEAJLYL4LQF34FXC4.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdint"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_tgmath-10DND0A3GLEXLI8FJ86AH5KVQ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_tgmath"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-4UVSL96QR18F54HINI6107Y0D.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-1LPVU176CFJEDL8APPINPBMQH.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation3.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-NTM5B7UW970XA69AN13E13WI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-C977IWLEHJ21QIBWIT52I1C9G.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_SwiftConcurrencyShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/dnssd.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/dnssd-C3KYBGMDBD8SPWWAXWIE3L76E.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "dnssd"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/launch.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/launch-93RH8BSDZVRDVRRWNPH721GJW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "launch"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/libDER\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/libDER-BA9V9KHL7DT28Y1G35TYU1HIO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "libDER"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/libkern.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/libkern-1ODAJZWHHEZ0RR8PCRW7YI5QA.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "libkern"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/os-C9B0GWHNHTCGKUZA3G8QK4WMS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/os_object-5U43TJBVDDVLG80C62PSU55BI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_object"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/os_workgroup-S0DHCR7GWG3XM4046QZ0P9IU.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_workgroup"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ptrauth-E1BJEQFFO9CPUVX4SDAA0T8ZV.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrauth"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/ptrcheck-BT3N6WXGBWVNWADMM3THFH4NI.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrcheck"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/simd\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/simd-8V9RFIP12BYQJXWD9BZGZAU87.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "simd"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/c_standard_library.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/string_h-5KHQHS5HEN53TEGIJ09S91ROX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "string_h"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.2.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Volumes\/HD_DATI\/projects\/M4AppClone\/Scripta-Git\/.build\/out\/SDKExplicitPrecompiledModules\/sys_types-EK8S383RT53Q2VSU30DPRLFGB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "sys_types"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/CharacterAnalysis.swift" : {
+    "abi-baseline-json" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore.abi.json",
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.dia",
+    "objc-header" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-Swift.h",
+    "swiftdoc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore.swiftdoc",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore.swiftmodule",
+    "swiftsourceinfo" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore.swiftsourceinfo"
+  }
+}

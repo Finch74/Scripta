@@ -1,0 +1,41 @@
+{
+  "" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary-emit-module.dia",
+    "pch" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.swiftdeps"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/CharacterAnalysis.swift" : {
+    "index-unit-output-path" : "/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.o"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/DocumentOutline.swift" : {
+    "index-unit-output-path" : "/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.o"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/FountainParser.swift" : {
+    "index-unit-output-path" : "/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.o"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/InlineParser.swift" : {
+    "index-unit-output-path" : "/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.o"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/MarkdownParser.swift" : {
+    "index-unit-output-path" : "/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.o"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/ScriptLine.swift" : {
+    "index-unit-output-path" : "/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Release/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.o"
+  }
+}

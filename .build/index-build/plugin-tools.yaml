@@ -1,0 +1,91 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "ScriptaApp-arm64-apple-macosx-debug.module": ["<ScriptaApp-arm64-apple-macosx-debug.module>"]
+  "ScriptaCLI-arm64-apple-macosx-debug.module": ["<ScriptaCLI-arm64-apple-macosx-debug.module>"]
+  "ScriptaCore-arm64-apple-macosx-debug.module": ["<ScriptaCore-arm64-apple-macosx-debug.module>"]
+  "main": ["<ScriptaApp-arm64-apple-macosx-debug.module>","<ScriptaCLI-arm64-apple-macosx-debug.module>","<ScriptaCore-arm64-apple-macosx-debug.module>"]
+  "test": ["<ScriptaApp-arm64-apple-macosx-debug.module>","<ScriptaCLI-arm64-apple-macosx-debug.module>","<ScriptaCore-arm64-apple-macosx-debug.module>"]
+default: "main"
+nodes:
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCLI/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/AppTheme.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/CharacterAnalysisView.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/CharacterProfiles.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/EditorPreferences.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/EditorView.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/ScriptaApp.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/ScriptaDocument.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/DocumentPreview.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorFormatting.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorSnapshot.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorStyle.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/ScriptEditor.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/SyntaxHighlighter.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ContentTypes.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/DocumentExporter.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ExportOptions.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ExportTemplates.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/HTMLRenderer.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/PDFExporter.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/main.swift"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/sources"]
+    description: "Write auxiliary file /Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/sources"
+
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCLI.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCLI/main.swift"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCLI.build/sources"]
+    description: "Write auxiliary file /Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCLI.build/sources"
+
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/CharacterAnalysis.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/DocumentOutline.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/FountainParser.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/InlineParser.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/MarkdownParser.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/ScriptLine.swift"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/sources"]
+    description: "Write auxiliary file /Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/sources"
+
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Library/Developer/CommandLineTools/usr/bin/swiftc"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+
+  "<ScriptaApp-arm64-apple-macosx-debug.module>":
+    tool: phony
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaApp.swiftmodule"]
+    outputs: ["<ScriptaApp-arm64-apple-macosx-debug.module>"]
+
+  "<ScriptaCLI-arm64-apple-macosx-debug.module>":
+    tool: phony
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCLI.swiftmodule"]
+    outputs: ["<ScriptaCLI-arm64-apple-macosx-debug.module>"]
+
+  "<ScriptaCore-arm64-apple-macosx-debug.module>":
+    tool: phony
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCore.swiftmodule"]
+    outputs: ["<ScriptaCore-arm64-apple-macosx-debug.module>"]
+
+  "C.ScriptaApp-arm64-apple-macosx-debug.module":
+    tool: shell
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/AppTheme.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/CharacterAnalysisView.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/CharacterProfiles.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/EditorPreferences.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/EditorView.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/ScriptaApp.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/App/ScriptaDocument.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/DocumentPreview.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorFormatting.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorSnapshot.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/EditorStyle.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/ScriptEditor.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Editor/SyntaxHighlighter.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ContentTypes.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/DocumentExporter.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ExportOptions.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/ExportTemplates.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/HTMLRenderer.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/Export/PDFExporter.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/main.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCore.swiftmodule","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/sources"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaApp.swiftmodule"]
+    description: "Compiling Swift Module 'ScriptaApp' (20 sources)"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-module-name","ScriptaApp","-emit-dependencies","-emit-module","-emit-module-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaApp.swiftmodule","-output-file-map","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/output-file-map.json","-incremental","@/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaApp.build/sources","-I","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx15.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ScriptaApp_main","-swift-version","6","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xcc","-isysroot","-Xcc","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-Xcc","-fPIC","-Xcc","-g","-package-name","scripta_git"]
+
+  "C.ScriptaCLI-arm64-apple-macosx-debug.module":
+    tool: shell
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCLI/main.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCore.swiftmodule","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCLI.build/sources"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCLI.swiftmodule"]
+    description: "Compiling Swift Module 'ScriptaCLI' (1 sources)"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-module-name","ScriptaCLI","-emit-dependencies","-emit-module","-emit-module-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCLI.swiftmodule","-output-file-map","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCLI.build/output-file-map.json","-incremental","@/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCLI.build/sources","-I","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx15.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ScriptaCLI_main","-swift-version","6","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xcc","-isysroot","-Xcc","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-Xcc","-fPIC","-Xcc","-g","-package-name","scripta_git"]
+
+  "C.ScriptaCore-arm64-apple-macosx-debug.module":
+    tool: shell
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/CharacterAnalysis.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/DocumentOutline.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/FountainParser.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/InlineParser.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/MarkdownParser.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/ScriptLine.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/sources"]
+    outputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCore.swiftmodule"]
+    description: "Compiling Swift Module 'ScriptaCore' (6 sources)"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-module-name","ScriptaCore","-emit-dependencies","-emit-module","-emit-module-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules/ScriptaCore.swiftmodule","-output-file-map","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/output-file-map.json","-parse-as-library","-incremental","@/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/sources","-I","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx15.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/index-build/arm64-apple-macosx/debug/ScriptaCore.build/include/ScriptaCore-Swift.h","-swift-version","6","-Xfrontend","-experimental-lazy-typecheck","-Xfrontend","-experimental-skip-all-function-bodies","-Xfrontend","-experimental-allow-module-with-compiler-errors","-Xfrontend","-empty-abi-descriptor","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xcc","-isysroot","-Xcc","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-Xcc","-fPIC","-Xcc","-g","-package-name","scripta_git"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaApp/","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCLI/","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Package.swift","/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

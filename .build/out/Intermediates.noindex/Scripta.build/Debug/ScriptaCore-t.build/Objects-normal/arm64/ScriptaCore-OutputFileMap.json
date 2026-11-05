@@ -1,0 +1,69 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.dia",
+    "emit-module-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary-emit-module.dia",
+    "pch" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptaCore-primary.swiftdeps"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/CharacterAnalysis.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/CharacterAnalysis~partial.swiftmodule"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/DocumentOutline.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/DocumentOutline~partial.swiftmodule"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/FountainParser.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/FountainParser~partial.swiftmodule"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/InlineParser.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/InlineParser~partial.swiftmodule"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/MarkdownParser.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/MarkdownParser~partial.swiftmodule"
+  },
+  "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/Sources/ScriptaCore/Parsing/ScriptLine.swift" : {
+    "const-values" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.swiftconstvalues",
+    "dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.d",
+    "diagnostics" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.dia",
+    "index-unit-output-path" : "/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.o",
+    "llvm-bc" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.bc",
+    "object" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.o",
+    "swift-dependencies" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine.swiftdeps",
+    "swiftmodule" : "/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Intermediates.noindex/Scripta.build/Debug/ScriptaCore-t.build/Objects-normal/arm64/ScriptLine~partial.swiftmodule"
+  }
+}

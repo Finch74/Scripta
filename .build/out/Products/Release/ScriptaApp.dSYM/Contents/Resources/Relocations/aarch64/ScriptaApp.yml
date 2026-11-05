@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Volumes/HD_DATI/projects/M4AppClone/Scripta-Git/.build/out/Products/Release/ScriptaApp'
+relocations:     []
+...

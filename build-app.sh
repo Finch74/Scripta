@@ -18,6 +18,29 @@ cp "$BIN" "$APP/Contents/MacOS/Scripta"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 printf 'APPL????' > "$APP/Contents/PkgInfo"
 
+# --- Gestione Icona (.png -> .icns) ---
+if [ -f "icon_scripta.png" ]; then
+    ICONSET="build/AppIcon.iconset"
+    rm -rf "$ICONSET"
+    mkdir -p "$ICONSET"
+    
+    # Genera le varie dimensioni richieste da macOS per l'iconset
+    sips -z 16 16     icon_scripta.png --out "$ICONSET/icon_16x16.png" >/dev/null 2>&1
+    sips -z 32 32     icon_scripta.png --out "$ICONSET/icon_16x16@2x.png" >/dev/null 2>&1
+    sips -z 32 32     icon_scripta.png --out "$ICONSET/icon_32x32.png" >/dev/null 2>&1
+    sips -z 64 64     icon_scripta.png --out "$ICONSET/icon_32x32@2x.png" >/dev/null 2>&1
+    sips -z 128 128   icon_scripta.png --out "$ICONSET/icon_128x128.png" >/dev/null 2>&1
+    sips -z 256 256   icon_scripta.png --out "$ICONSET/icon_128x128@2x.png" >/dev/null 2>&1
+    sips -z 256 256   icon_scripta.png --out "$ICONSET/icon_256x256.png" >/dev/null 2>&1
+    sips -z 512 512   icon_scripta.png --out "$ICONSET/icon_256x256@2x.png" >/dev/null 2>&1
+    sips -z 512 512   icon_scripta.png --out "$ICONSET/icon_512x512.png" >/dev/null 2>&1
+    sips -z 1024 1024 icon_scripta.png --out "$ICONSET/icon_512x512@2x.png" >/dev/null 2>&1
+
+    # Compila la cartella iconset in un file .icns
+    iconutil -c icns "$ICONSET" -o "$APP/Contents/Resources/AppIcon.icns"
+    rm -rf "$ICONSET"
+fi
+
 # Quick Look extension: compila attingendo dai nuovi moduli ScriptaCore e ScriptaApp
 OPT=$([ "$CONFIG" = "release" ] && echo "-O" || echo "-Onone")
 swiftc $OPT -swift-version 6 -parse-as-library -module-name ScriptaQuickLook \
@@ -43,4 +66,4 @@ LSREGISTER=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchSe
 "$LSREGISTER" -f "$APP" >/dev/null 2>&1 || true
 pluginkit -a "$APPEX" >/dev/null 2>&1 || true
 
-echo "Creato $APP con successo!"
+echo "Creato $APP con successo e icona integrata!"

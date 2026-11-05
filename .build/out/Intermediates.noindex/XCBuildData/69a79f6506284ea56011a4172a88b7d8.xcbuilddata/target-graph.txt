@@ -1,4 +1,0 @@
-Target dependency graph (2 targets)
-Target 'ScriptaApp-product' in project 'Scripta'
-➜ Explicit dependency on target 'ScriptaCore' in project 'Scripta'
-Target 'ScriptaCore' in project 'Scripta' (no dependencies)

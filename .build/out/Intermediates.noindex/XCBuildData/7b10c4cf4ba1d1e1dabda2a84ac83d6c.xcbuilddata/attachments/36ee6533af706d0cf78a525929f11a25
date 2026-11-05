@@ -1,4 +1,0 @@
-module ScriptaCore {
-header "ScriptaCore-Swift.h"
-export *
-}

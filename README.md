@@ -2,6 +2,13 @@
 
 Scripta è un editor di scrittura per macOS dedicato a **sceneggiature** (formato [Fountain](https://fountain.io/syntax)), **prosa** (Markdown) e **script per fumetti/graphic novel**. Il motore di parsing e analisi è una libreria Swift indipendente dall'interfaccia, quindi funziona anche su **Linux** tramite un'interfaccia a riga di comando.
 
+**Repository:** [github.com/Finch74/Scripta](https://github.com/Finch74/Scripta) · **Download:** [ultima release](https://github.com/Finch74/Scripta/releases/latest)
+
+```bash
+git clone https://github.com/Finch74/Scripta.git
+cd Scripta
+```
+
 ## Funzionalità
 
 - **Due modalità di scrittura**: sceneggiatura (Fountain) e prosa (Markdown), con evidenziazione della sintassi in tempo reale.
@@ -130,12 +137,21 @@ Per i file di prosa la CLI riporta il numero di titoli e una stima del tempo di 
 
 ## Pacchetti di distribuzione
 
-Ogni release fornisce due pacchetti pronti all'uso:
+Ogni release pubblicata nella pagina [Releases](https://github.com/Finch74/Scripta/releases) fornisce due pacchetti pronti all'uso. I link qui sotto puntano sempre all'ultima release:
 
-| Pacchetto                   | Contenuto                                           | Piattaforma                  |
-|-----------------------------|-----------------------------------------------------|------------------------------|
-| `Scripta-macOS-arm64.dmg`   | `Scripta.app` + collegamento ad Applicazioni        | macOS 15+, Apple Silicon     |
-| `Scripta-Linux-x86_64.zip`  | eseguibile `scripta` + cartella `Examples/`         | Linux x86_64 (glibc)         |
+| Pacchetto | Contenuto | Piattaforma |
+|-----------|-----------|-------------|
+| [`Scripta-macOS-arm64.dmg`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-macOS-arm64.dmg) | `Scripta.app` + collegamento ad Applicazioni | macOS 15+, Apple Silicon |
+| [`Scripta-Linux-x86_64.zip`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-Linux-x86_64.zip) | eseguibile `scripta` + cartella `Examples/` | Linux x86_64 (glibc) |
+
+Per una versione specifica sostituisci `latest/download` con `download/<tag>`. Per esempio:
+`https://github.com/Finch74/Scripta/releases/download/v1.0.0/Scripta-macOS-arm64.dmg`
+
+Download da terminale (Linux):
+
+```bash
+curl -LO https://github.com/Finch74/Scripta/releases/latest/download/Scripta-Linux-x86_64.zip
+```
 
 ### Installare da un pacchetto
 
@@ -184,10 +200,22 @@ USE_DOCKER=1 ./package-linux.sh            # forza Docker anche su Linux
 
 La build Linux usa la cartella `.build-linux/`, separata da `.build/`, così non interferisce con la build macOS.
 
+### Pubblicare una release
+
+I link di download funzionano solo se i file allegati alla release hanno esattamente i nomi `Scripta-macOS-arm64.dmg` e `Scripta-Linux-x86_64.zip`. Sono i nomi che producono gli script. Per esempio, con la [GitHub CLI](https://cli.github.com):
+
+```bash
+./package-dmg.sh
+./package-linux.sh
+git tag v1.0.0 && git push origin v1.0.0
+gh release create v1.0.0 --repo Finch74/Scripta --title "Scripta 1.0.0" --generate-notes \
+    build/Scripta-macOS-arm64.dmg build/Scripta-Linux-x86_64.zip
+```
+
 ## Usare ScriptaCore in un altro progetto
 
 ```swift
-.package(path: "../Scripta"),
+.package(url: "https://github.com/Finch74/Scripta.git", from: "1.0.0"),
 // ...
 .target(name: "MyTool", dependencies: [.product(name: "ScriptaCore", package: "Scripta")])
 ```

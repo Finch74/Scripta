@@ -34,11 +34,13 @@ QuickLook/         Estensione Quick Look (macOS)
 Resources/         Info.plist del bundle dell'app
 Resources/Linux/   File .desktop, icona, install.sh e AppRun per la GUI Linux
 Examples/          File di esempio (.fountain, .md)
+LICENSE            Licenza MIT
 build-app.sh       Build di Scripta.app (macOS)
 build-linux.sh     Build della CLI (Linux, ma funziona anche su macOS)
 package-dmg.sh     Pacchetto Scripta-macOS-arm64.dmg
 package-linux.sh   Pacchetto Scripta-Linux-x86_64.zip
 package-linux-gui.sh  Pacchetto Scripta-GUI-Linux-x86_64.tar.gz (e AppImage opzionale)
+package-deb.sh     Pacchetto Debian/Ubuntu scripta-gtk_<versione>_<arch>.deb
 ```
 
 | Prodotto SwiftPM | Target        | Piattaforme     |
@@ -296,3 +298,7 @@ let outline = DocumentOutline.items(in: text, mode: .screenplay)
 let characters = CharacterAnalysis.statistics(text: text, mode: .screenplay)
 let stats = DocumentStatistics(text: text, mode: .screenplay)   // parole, scene, outline, personaggi…
 ```
+
+## License
+
+Scripta è software open source distribuito con licenza MIT: il testo completo è nel file [LICENSE](LICENSE). © 2026 Finch74.

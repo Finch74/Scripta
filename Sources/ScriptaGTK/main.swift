@@ -60,6 +60,10 @@ func showAbout() {
     gtk_about_dialog_set_comments(cast(about), "Sceneggiature (Fountain), prosa (Markdown) e script per fumetti.")
     gtk_about_dialog_set_website(cast(about), "https://github.com/Finch74/Scripta")
     gtk_about_dialog_set_logo_icon_name(cast(about), applicationID)
+    gtk_about_dialog_set_copyright(cast(about), "© 2026 Finch74")
+    // The exact text of LICENSE (License.swift), shown under the dialog's license button.
+    gtk_about_dialog_set_license(cast(about), licenseText)
+    gtk_about_dialog_set_wrap_license(cast(about), 1)
     if let window = gtk_application_get_active_window(cast(application)) {
         gtk_window_set_transient_for(cast(about), window)
         gtk_window_set_modal(cast(about), 1)

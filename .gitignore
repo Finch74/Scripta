@@ -1,0 +1,12 @@
+# SwiftPM / Xcode build output
+.build/
+.build-linux/
+.build-linux-gui/
+.swiftpm/
+build/
+dist/
+*.xcodeproj/xcuserdata/
+
+# OS files
+.DS_Store
+Thumbs.db

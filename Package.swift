@@ -2,7 +2,9 @@
 import PackageDescription
 
 // ScriptaCore and the `scripta` CLI build everywhere. The GUI front ends are platform-specific:
-// ScriptaApp needs AppKit/SwiftUI (macOS), ScriptaGTK needs GTK 4 (Linux, found via pkg-config).
+// ScriptaApp needs AppKit/SwiftUI (macOS), ScriptaGTK needs GTK 4 (Linux, found via pkg-config),
+// ScriptaWin (Windows) depends on ScriptaCore only. The CGtk/CWebKit/CPoppler system libraries are
+// declared only inside the Linux branch, so they are never resolved on macOS or Windows.
 var products: [Product] = [
     .library(name: "ScriptaCore", targets: ["ScriptaCore"]),
     .executable(name: "scripta", targets: ["ScriptaCLI"]),
@@ -63,6 +65,17 @@ targets.append(contentsOf: [
         swiftSettings: [.swiftLanguageMode(.v6)]
     ),
 ])
+#elseif os(Windows)
+// Windows front end: ScriptaCore only, no system libraries (GTK, WebKit and Poppler are Linux-only).
+products.append(.executable(name: "ScriptaWin", targets: ["ScriptaWin"]))
+targets.append(
+    .executableTarget(
+        name: "ScriptaWin",
+        dependencies: ["ScriptaCore"],
+        path: "Sources/ScriptaWin",
+        swiftSettings: [.swiftLanguageMode(.v6)]
+    )
+)
 #endif
 
 let package = Package(

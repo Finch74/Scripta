@@ -1,0 +1,39 @@
+name: Windows build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    # Installing Visual Studio and the Swift toolchain with WinGet takes most of the run.
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup dipendenze e build (build-windows.ps1)
+        shell: pwsh
+        run: ./build-windows.ps1
+
+      - name: Copia dell'eseguibile
+        shell: pwsh
+        run: |
+          # The script's PATH changes do not survive between steps: reload them to call swift again.
+          $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' +
+                      [Environment]::GetEnvironmentVariable('Path', 'User')
+          $env:SDKROOT = [Environment]::GetEnvironmentVariable('SDKROOT', 'Machine')
+          $bin = (swift build -c release --show-bin-path).Trim()
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Copy-Item (Join-Path $bin 'ScriptaWin.exe') dist/
+          Copy-Item LICENSE dist/
+          ./dist/ScriptaWin.exe Examples/Esempio.fountain
+
+      - name: Upload artefatto
+        uses: actions/upload-artifact@v4
+        with:
+          name: ScriptaWin-windows-x64
+          path: dist/
+          if-no-files-found: error

@@ -37,6 +37,7 @@ connect(application, "startup") {
     setAccelerators(application, "win.open", ["<Control>o"])
     setAccelerators(application, "win.save", ["<Control>s"])
     setAccelerators(application, "win.save-as", ["<Control><Shift>s"])
+    setAccelerators(application, "win.export-pdf", ["<Control><Shift>e"])
 }
 
 connect(application, "activate") {
@@ -64,6 +65,11 @@ func showAbout() {
         gtk_window_set_modal(cast(about), 1)
     }
     gtk_window_present(cast(about))
+}
+
+// Headless export, as in the macOS app: `scripta-gtk --export <input> <output.pdf> [--paper letter|a4] [--notes]`.
+if CommandLine.arguments.contains("--export") {
+    MainActor.assumeIsolated { CommandLineExport.run(CommandLine.arguments) }
 }
 
 let status = g_application_run(cast(application), CommandLine.argc, CommandLine.unsafeArgv)

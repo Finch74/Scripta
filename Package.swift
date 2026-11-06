@@ -41,9 +41,24 @@ targets.append(contentsOf: [
         pkgConfig: "gtk4",
         providers: [.apt(["libgtk-4-dev"]), .yum(["gtk4-devel"])]
     ),
+    // PDF export: WebKitGTK paginates the HTML, Poppler + cairo add page numbers and metadata.
+    .systemLibrary(
+        name: "CWebKit",
+        path: "Sources/CWebKit",
+        pkgConfig: "webkitgtk-6.0",
+        providers: [.apt(["libwebkitgtk-6.0-dev"]), .yum(["webkitgtk6.0-devel"])]
+    ),
+    // No `pkgConfig:` here: SwiftPM cannot parse the multi-line `Requires.private` of poppler-glib.pc.
+    // The header is included by its standard path and the library is linked from the module map;
+    // GLib and cairo flags already come from gtk4.
+    .systemLibrary(
+        name: "CPoppler",
+        path: "Sources/CPoppler",
+        providers: [.apt(["libpoppler-glib-dev"]), .yum(["poppler-glib-devel"])]
+    ),
     .executableTarget(
         name: "ScriptaGTK",
-        dependencies: ["ScriptaCore", "CGtk"],
+        dependencies: ["ScriptaCore", "CGtk", "CWebKit", "CPoppler"],
         path: "Sources/ScriptaGTK",
         swiftSettings: [.swiftLanguageMode(.v6)]
     ),

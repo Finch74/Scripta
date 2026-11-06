@@ -18,10 +18,7 @@ enum DocumentExporter {
         case .pdf:
             let result = HTMLRenderer.render(text: text, mode: mode, options: options,
                                              fallbackTitle: title, forPrint: true)
-            let skip = result.hasTitlePage ? 1 : 0
-            let numbering: PageNumbering = mode == .screenplay
-                ? .screenplay(skipLeadingPages: skip)
-                : .footer(skipLeadingPages: skip)
+            let numbering = PageNumbering.standard(for: mode, hasTitlePage: result.hasTitlePage)
             try await PDFExporter().export(html: result.html, to: url,
                                            layout: .layout(for: mode, paper: options.paper),
                                            numbering: numbering,

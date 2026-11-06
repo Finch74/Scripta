@@ -98,6 +98,7 @@ final class ScriptaWindow {
         let menu = g_menu_new()
         g_menu_append(menu, "Nuova finestra", "app.new")
         g_menu_append(menu, "Salva con nome…", "win.save-as")
+        g_menu_append(menu, "Esporta PDF…", "win.export-pdf")
         g_menu_append(menu, "Informazioni su Scripta", "app.about")
         g_menu_append(menu, "Esci", "app.quit")
         let menuButton = raw(gtk_menu_button_new())!
@@ -122,6 +123,7 @@ final class ScriptaWindow {
         addAction(to: window, "open") { [self] in confirmDiscard { self.chooseFileToOpen() } }
         addAction(to: window, "save") { [self] in save() }
         addAction(to: window, "save-as") { [self] in saveAs() }
+        addAction(to: window, "export-pdf") { [self] in exportPDF() }
 
         connect(buffer, "changed") { [self] in scheduleRefresh() }
         connect(buffer, "modified-changed") { [self] in updateTitle() }
@@ -341,12 +343,15 @@ final class ScriptaWindow {
         return true
     }
 
+    private static let documentFilters = [("Documenti Scripta", ["*.fountain", "*.spmd", "*.md", "*.markdown", "*.txt"]),
+                                          ("Tutti i file", ["*"])]
+
     private func chooseFile(_ action: GtkFileChooserAction, title: String, accept: String,
-                            suggestedName: String? = nil, then handler: @escaping @MainActor (String) -> Void) {
+                            suggestedName: String? = nil, filters: [(String, [String])] = documentFilters,
+                            then handler: @escaping @MainActor (String) -> Void) {
         let dialog = raw(gtk_file_chooser_native_new(title, cast(window), action, accept, "_Annulla"))!
         gtk_native_dialog_set_modal(cast(dialog), 1)
-        for (name, patterns) in [("Documenti Scripta", ["*.fountain", "*.spmd", "*.md", "*.markdown", "*.txt"]),
-                                 ("Tutti i file", ["*"])] {
+        for (name, patterns) in filters {
             let filter = raw(gtk_file_filter_new())!
             gtk_file_filter_set_name(cast(filter), name)
             patterns.forEach { gtk_file_filter_add_pattern(cast(filter), $0) }
@@ -368,6 +373,42 @@ final class ScriptaWindow {
             if let path { handler(path) }
         }
         gtk_native_dialog_show(cast(dialog))
+    }
+
+    // MARK: - Export
+
+    /// Same pipeline as the macOS app: HTML from ScriptaCore, paginated by WebKit, numbered afterwards.
+    private func exportPDF() {
+        let baseName = ((path.map { ($0 as NSString).lastPathComponent } ?? "Senza titolo") as NSString)
+            .deletingPathExtension
+        chooseFile(GTK_FILE_CHOOSER_ACTION_SAVE, title: "Esporta PDF", accept: "_Esporta",
+                   suggestedName: baseName + ".pdf", filters: [("Documenti PDF", ["*.pdf"])]) { [self] chosen in
+            let destination = URL(fileURLWithPath: chosen.lowercased().hasSuffix(".pdf") ? chosen : chosen + ".pdf")
+            let mode = mode
+            let options = ExportOptions.defaults(for: mode)
+            let result = HTMLRenderer.render(text: text, mode: mode, options: options,
+                                             fallbackTitle: baseName, forPrint: true)
+            gtk_label_set_text(cast(statusLabel), "Esportazione PDF in corso…")
+            setActionEnabled("export-pdf", false)
+            PDFExporter.export(html: result.html, to: destination,
+                               layout: .layout(for: mode, paper: options.paper),
+                               numbering: .standard(for: mode, hasTitlePage: result.hasTitlePage),
+                               metadata: PDFMetadata(title: result.title, author: result.author)) { [self] error in
+                setActionEnabled("export-pdf", true)
+                if let error {
+                    refresh()
+                    showError("Impossibile esportare «\(destination.lastPathComponent)»",
+                              detail: error.localizedDescription)
+                } else {
+                    gtk_label_set_text(cast(statusLabel), "PDF esportato: \(destination.path)")
+                }
+            }
+        }
+    }
+
+    private func setActionEnabled(_ name: String, _ enabled: Bool) {
+        guard let action = g_action_map_lookup_action(cast(window), name) else { return }
+        g_simple_action_set_enabled(cast(raw(action)), enabled ? 1 : 0)
     }
 
     // MARK: - Dialogs

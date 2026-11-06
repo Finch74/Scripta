@@ -9,12 +9,12 @@
 # The Swift runtime and Foundation are linked statically; GTK 4 is linked dynamically and must be
 # installed on the target system (it is not bundled, not even in the AppImage).
 #
-# Variables: SWIFT_IMAGE (default swift:6.0), USE_DOCKER=1 to force Docker on Linux too,
+# Variables: SWIFT_IMAGE (default swift:6.0-noble; WebKitGTK 6.0 needs Ubuntu 24.04+), USE_DOCKER=1 to force Docker on Linux too,
 # APPIMAGE=1 to build the AppImage, APPIMAGETOOL=<path> to use a local appimagetool (Linux without Docker).
 set -euo pipefail
 cd "$(dirname "$0")"
 
-SWIFT_IMAGE="${SWIFT_IMAGE:-swift:6.0}"
+SWIFT_IMAGE="${SWIFT_IMAGE:-swift:6.0-noble}"
 # Separate scratch path, so this build never mixes with the macOS one (.build/) or the CLI one (.build-linux/).
 SCRATCH=".build-linux-gui"
 BUILD_CMD="swift build -c release --product scripta-gtk --static-swift-stdlib --scratch-path $SCRATCH"
@@ -22,8 +22,9 @@ ID="io.github.finch74.Scripta"
 
 if [ "$(uname -s)" = "Linux" ] && [ "${USE_DOCKER:-0}" != "1" ]; then
     ARCH="$(uname -m)"
-    pkg-config --exists gtk4 2>/dev/null || {
-        echo "GTK 4 non trovato: installa libgtk-4-dev (Debian/Ubuntu) o gtk4-devel (Fedora) e pkg-config." >&2
+    pkg-config --exists gtk4 webkitgtk-6.0 poppler-glib 2>/dev/null || {
+        echo "Dipendenze non trovate: installa libgtk-4-dev libwebkitgtk-6.0-dev libpoppler-glib-dev (Debian/Ubuntu)" >&2
+        echo "o gtk4-devel webkitgtk6.0-devel poppler-glib-devel (Fedora), più pkg-config." >&2
         exit 1
     }
     run_linux() { bash -c "$1"; }
@@ -36,7 +37,7 @@ else
 ARG SWIFT_IMAGE
 FROM ${SWIFT_IMAGE}
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends libgtk-4-dev pkg-config \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends libgtk-4-dev libwebkitgtk-6.0-dev libpoppler-glib-dev pkg-config \
     && rm -rf /var/lib/apt/lists/*
 EOF
     run_linux() { docker run --rm --platform linux/amd64 -v "$PWD":/src -w /src "$BUILDER_IMAGE" bash -c "$1"; }

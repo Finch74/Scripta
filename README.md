@@ -54,7 +54,7 @@ Le due interfacce grafiche sono dichiarate in `Package.swift` in base al sistema
 
 - **macOS**: macOS 15 o successivo, Apple Silicon, Xcode o Command Line Tools con Swift 6.0+.
 - **Linux**: toolchain Swift 6.0+ ([swift.org/install](https://www.swift.org/install/)).
-- **GUI Linux**: in più, GTK 4.6 o successivo con i file di sviluppo e `pkg-config` (Ubuntu 22.04+, Debian 12+, Fedora 36+).
+- **GUI Linux**: in più, GTK 4.6 o successivo, WebKitGTK 6.0 e Poppler (per l'esportazione PDF) con i file di sviluppo e `pkg-config` (Ubuntu 24.04+, Debian 12+, Fedora 38+).
 
 ## Compilare l'app su macOS
 
@@ -149,8 +149,8 @@ Per i file di prosa la CLI riporta il numero di titoli e una stima del tempo di 
 Installa prima GTK 4 e `pkg-config`:
 
 ```bash
-sudo apt install libgtk-4-dev pkg-config     # Debian/Ubuntu
-sudo dnf install gtk4-devel pkgconf-pkg-config   # Fedora
+sudo apt install libgtk-4-dev libwebkitgtk-6.0-dev libpoppler-glib-dev pkg-config     # Debian/Ubuntu
+sudo dnf install gtk4-devel webkitgtk6.0-devel poppler-glib-devel pkgconf-pkg-config   # Fedora
 ```
 
 Poi compila e avvia:

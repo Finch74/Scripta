@@ -46,10 +46,8 @@ OPT=$([ "$CONFIG" = "release" ] && echo "-O" || echo "-Onone")
 swiftc $OPT -swift-version 6 -parse-as-library -module-name ScriptaQuickLook \
     -target arm64-apple-macos15.0 \
     Sources/ScriptaCore/Parsing/*.swift \
+    Sources/ScriptaCore/Export/*.swift \
     Sources/ScriptaApp/Export/ContentTypes.swift \
-    Sources/ScriptaApp/Export/ExportOptions.swift \
-    Sources/ScriptaApp/Export/ExportTemplates.swift \
-    Sources/ScriptaApp/Export/HTMLRenderer.swift \
     QuickLook/PreviewProvider.swift \
     -framework QuickLookUI \
     -Xlinker -e -Xlinker _NSExtensionMain \

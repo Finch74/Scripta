@@ -1,18 +1,15 @@
 import Foundation
-#if canImport(ScriptaCore)
-import ScriptaCore
-#endif
 
 /// Converts Fountain or Markdown source into a complete, self-contained HTML document.
-enum HTMLRenderer {
-    struct Result {
-        var html: String
-        var title: String
-        var author: String?
-        var hasTitlePage: Bool
+public enum HTMLRenderer {
+    public struct Result: Sendable {
+        public var html: String
+        public var title: String
+        public var author: String?
+        public var hasTitlePage: Bool
     }
 
-    static func render(text: String, mode: DocumentMode, options: ExportOptions,
+    public static func render(text: String, mode: DocumentMode, options: ExportOptions,
                        fallbackTitle: String, forPrint: Bool) -> Result {
         let source = cleanedSource(text, mode: mode, includeNotes: options.includeNotes)
         let ns = source as NSString
@@ -61,7 +58,7 @@ enum HTMLRenderer {
     // MARK: - Source cleanup
 
     /// Removes boneyard / comments (never printed) and, optionally, notes.
-    static func cleanedSource(_ text: String, mode: DocumentMode, includeNotes: Bool) -> String {
+    public static func cleanedSource(_ text: String, mode: DocumentMode, includeNotes: Bool) -> String {
         let regex = mode == .screenplay ? FountainParser.boneyardRegex : MarkdownParser.commentRegex
         var result = regex.stringByReplacingMatches(in: text, range: NSRange(location: 0, length: (text as NSString).length),
                                                     withTemplate: "")
@@ -386,7 +383,7 @@ enum HTMLRenderer {
 
     // MARK: - Inline
 
-    static func inlineHTML(_ ns: NSString, range: NSRange, mode: DocumentMode) -> String {
+    public static func inlineHTML(_ ns: NSString, range: NSRange, mode: DocumentMode) -> String {
         render(InlineParser.parse(ns, range: range, mode: mode), ns)
     }
 
@@ -413,7 +410,7 @@ enum HTMLRenderer {
     }
 
     /// Inline text with markup removed (for titles and metadata).
-    static func plainText(_ ns: NSString, _ range: NSRange, mode: DocumentMode) -> String {
+    public static func plainText(_ ns: NSString, _ range: NSRange, mode: DocumentMode) -> String {
         func flatten(_ nodes: [InlineNode]) -> String {
             nodes.map { node in
                 switch node {
@@ -425,7 +422,7 @@ enum HTMLRenderer {
         return flatten(InlineParser.parse(ns, range: range, mode: mode)).trimmingCharacters(in: .whitespaces)
     }
 
-    static func escape(_ s: String) -> String {
+    public static func escape(_ s: String) -> String {
         var out = ""
         out.reserveCapacity(s.utf8.count)
         for ch in s {
@@ -439,7 +436,7 @@ enum HTMLRenderer {
         return out
     }
 
-    static func escapeAttribute(_ s: String) -> String {
+    public static func escapeAttribute(_ s: String) -> String {
         escape(s).replacingOccurrences(of: "\"", with: "&quot;")
     }
 }

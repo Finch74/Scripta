@@ -4,33 +4,6 @@ import PDFKit
 import WebKit
 import ScriptaCore
 
-enum PageNumbering: Sendable {
-    case none
-    /// Screenplay convention: "N." top-right, omitted on the first page of the script.
-    case screenplay(skipLeadingPages: Int)
-    /// Centred at the foot of every page.
-    case footer(skipLeadingPages: Int)
-}
-
-struct PDFMetadata: Sendable {
-    var title: String
-    var author: String?
-}
-
-enum ExportError: LocalizedError {
-    case loadFailed(String)
-    case printFailed
-    case postProcessingFailed
-
-    var errorDescription: String? {
-        switch self {
-        case .loadFailed(let reason): "Impossibile preparare il documento per la stampa: \(reason)"
-        case .printFailed: "La generazione del PDF non è riuscita."
-        case .postProcessingFailed: "Impossibile finalizzare il PDF (numerazione pagine)."
-        }
-    }
-}
-
 /// Renders HTML into a paginated PDF through WebKit's print engine, then stamps page numbers
 /// and metadata with Core Graphics / PDFKit.
 @MainActor
@@ -184,17 +157,7 @@ final class PDFExporter: NSObject, WKNavigationDelegate {
             page.draw(with: .mediaBox, to: context)
             context.restoreGState()
 
-            var label: String?
-            switch numbering {
-            case .none:
-                break
-            case .screenplay(let skip):
-                let number = index + 1 - skip
-                if number >= 2 { label = "\(number)." }
-            case .footer(let skip):
-                let number = index + 1 - skip
-                if number >= 1 { label = "\(number)" }
-            }
+            let label = numbering.label(forPageAt: index)
 
             if let label {
                 let attributed = NSAttributedString(string: label, attributes: [

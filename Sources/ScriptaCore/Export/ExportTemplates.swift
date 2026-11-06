@@ -1,15 +1,12 @@
 import Foundation
-#if canImport(ScriptaCore)
-import ScriptaCore
-#endif
 
 /// Clean typographic templates used for HTML and PDF output.
 ///
 /// All measurements are expressed in `pt` against the page content box, so the same stylesheet
 /// drives the WebKit print pipeline (margins supplied by `NSPrintInfo`) and standalone HTML
 /// (margins supplied by `@page` when printed from a browser, or a centred sheet on screen).
-enum ExportTemplates {
-    static func stylesheet(for mode: DocumentMode, layout: PageLayout, paper: PaperSize, forPrint: Bool) -> String {
+public enum ExportTemplates {
+    public static func stylesheet(for mode: DocumentMode, layout: PageLayout, paper: PaperSize, forPrint: Bool) -> String {
         // WebKit prints with a minimum shrink factor of 1.25, i.e. 1 CSS px = 0.8pt instead of 0.75pt.
         // Zooming by 0.75 / 0.8 restores true physical measurements on paper.
         let page = forPrint ? """

@@ -13,6 +13,7 @@ cd Scripta
 
 - **Due modalità di scrittura**: sceneggiatura (Fountain) e prosa (Markdown), con evidenziazione della sintassi in tempo reale.
 - **Supporto graphic novel**: tavole (`# Tav. 1`), vignette (`.Vig. 1`) e balloon (`**NOME**: testo`) in entrambe le modalità.
+- **Finestra di benvenuto e modelli** (macOS): all'avvio, se non apri un file, puoi riaprire un documento recente o crearne uno nuovo da un modello (Sceneggiatura, Graphic novel, Manoscritto / Romanzo).
 - **Outline navigabile**: scene, sezioni, titoli, tavole e vignette.
 - **Analisi dei personaggi**: numero di battute e parole per ciascun personaggio.
 - **Export** in PDF (US Letter o A4) su macOS e Linux; HTML, Markdown e Fountain solo su macOS.
@@ -36,7 +37,7 @@ Sources/
 QuickLook/         Estensione Quick Look (macOS)
 Resources/         Info.plist del bundle dell'app
 Resources/Linux/   File .desktop, icona, install.sh e AppRun per la GUI Linux
-Examples/          File di esempio (.fountain, .md)
+Examples/          Esempi e modelli della finestra di benvenuto: sceneggiatura, graphic novel (.fountain), romanzo (.md)
 LICENSE            Licenza MIT
 build-app.sh       Build di Scripta.app (macOS)
 build-linux.sh     Build della CLI (Linux, ma funziona anche su macOS)
@@ -96,7 +97,7 @@ Le interfacce grafiche sono dichiarate in `Package.swift` in base al sistema su 
 Lo script:
 
 1. compila il prodotto `ScriptaApp` con Swift Package Manager (arm64);
-2. assembla il bundle in `build/Scripta.app`;
+2. assembla il bundle in `build/Scripta.app`, copiando la cartella `Examples/` in `Contents/Resources/Examples` (sono i modelli della finestra di benvenuto);
 3. compila e incorpora l'estensione Quick Look (`Contents/PlugIns/ScriptaQuickLook.appex`);
 4. firma il bundle (firma ad-hoc) e lo registra presso Launch Services.
 
@@ -106,10 +107,34 @@ Per avviare l'app:
 open build/Scripta.app
 ```
 
+### Finestra di benvenuto e modelli
+
+Se all'avvio non viene aperto alcun file, Scripta mostra la finestra **Benvenuto in Scripta** al posto di un documento vuoto. La stessa finestra compare facendo clic sull'icona nel Dock quando non ci sono finestre aperte, e in qualsiasi momento dalla barra dei menu:
+
+| Voce di menu | Scorciatoia | Effetto |
+|--------------|-------------|---------|
+| **Archivio → Nuovo da modello…** | ⌥⌘N | apre la finestra direttamente sulla scheda **Modelli** |
+| **Finestra → Finestra di benvenuto** | ⇧⌘1 | riapre la schermata iniziale (scheda **Recenti**, o **Modelli** se non ci sono documenti recenti) |
+
+Dal menu la finestra viene portata in primo piano anche con altri documenti aperti, e il documento creato da un modello si aggiunge a quelli già aperti senza chiuderli né toccarne le modifiche non salvate.
+
+- **Recenti**: i documenti aperti di recente; doppio clic (o Invio) per riaprirli.
+- **Modelli**, sezione **SCRIPT**:
+
+  | Modello | File di partenza | Formato |
+  |---------|------------------|---------|
+  | Sceneggiatura | `Examples/Esempio_Cinematografico.fountain` | Fountain: scene INT./EXT., azione, personaggi, dialoghi, transizioni |
+  | Graphic novel | `Examples/Esempio_GraphicNovel.fountain` | Fountain: tavole, vignette, didascalie e balloon |
+  | Manoscritto / Romanzo | `Examples/Esempio.md` | Markdown: capitoli, paragrafi, citazioni, elenchi |
+
+- **Nuovo ⌘N** crea un documento *senza titolo* con il testo del modello selezionato: al primo salvataggio Scripta chiede dove salvarlo, e il file di esempio non viene mai modificato. **Apri…** apre un file esistente.
+
+I modelli vengono cercati nelle risorse dell'app (`Contents/Resources/Examples`) e, nelle build di debug avviate con `swift run`, nella cartella `Examples/` del repository. Se il file non è disponibile, per esempio con un eseguibile di release avviato fuori dal bundle, Scripta crea il documento da un testo di partenza predefinito per quel modello, senza errori.
+
 L'eseguibile dell'app supporta anche l'export da terminale:
 
 ```bash
-build/Scripta.app/Contents/MacOS/Scripta --export Examples/Esempio.fountain out.pdf --paper a4
+build/Scripta.app/Contents/MacOS/Scripta --export Examples/Esempio_Cinematografico.fountain out.pdf --paper a4
 ```
 
 ## Compilare e usare la CLI su Linux
@@ -123,7 +148,7 @@ In alternativa si può usare direttamente SwiftPM:
 
 ```bash
 swift build -c release --product scripta
-swift run scripta Examples/Esempio.fountain
+swift run scripta Examples/Esempio_Cinematografico.fountain
 ```
 
 L'eseguibile viene creato in `.build/release/scripta`. Per installarlo nel `PATH`:
@@ -145,8 +170,8 @@ La modalità si deduce dall'estensione (`.fountain`/`.spmd` → sceneggiatura, `
 Esempio:
 
 ```
-$ scripta Examples/Esempio.fountain
-Scripta — Esempio.fountain
+$ scripta Examples/Esempio_Cinematografico.fountain
+Scripta — Esempio_Cinematografico.fountain
 L'ULTIMA BOBINA
 
 STATISTICHE
@@ -187,7 +212,7 @@ Poi compila e avvia:
 
 ```bash
 swift build -c release --product scripta-gtk
-.build/release/scripta-gtk Examples/Esempio.fountain
+.build/release/scripta-gtk Examples/Esempio_Cinematografico.fountain
 ```
 
 Funzionalità della GUI:
@@ -198,7 +223,7 @@ Funzionalità della GUI:
 - apertura e salvataggio con richiesta di conferma per le modifiche non salvate; ogni file passato da riga di comando si apre in una finestra separata;
 - scorciatoie: `Ctrl+N` nuova finestra, `Ctrl+O` apri, `Ctrl+S` salva, `Ctrl+Shift+S` salva con nome, `Ctrl+Q` esci.
 
-- **Esporta PDF…** dal menu (WebKitGTK impagina l'HTML, Poppler aggiunge numeri di pagina e metadati); anche da terminale, senza aprire finestre: `scripta-gtk --export Examples/Esempio.fountain out.pdf --paper a4`.
+- **Esporta PDF…** dal menu (WebKitGTK impagina l'HTML, Poppler aggiunge numeri di pagina e metadati); anche da terminale, senza aprire finestre: `scripta-gtk --export Examples/Esempio_Cinematografico.fountain out.pdf --paper a4`.
 
 L'export HTML, Markdown e Fountain resta per ora esclusivo dell'app macOS.
 
@@ -223,22 +248,24 @@ winget install --id Swift.Toolchain -e --source winget
 e poi esegue `swift build -c release --product ScriptaWin`. L'eseguibile viene creato in `.build\release\ScriptaWin.exe`:
 
 ```powershell
-.build\release\ScriptaWin.exe Examples\Esempio.fountain
+.build\release\ScriptaWin.exe Examples\Esempio_Cinematografico.fountain
 ```
 
 Il workflow [`.github/workflows/windows-build.yml`](.github/workflows/windows-build.yml) esegue lo stesso script su un runner `windows-latest` a ogni push su `main` e a ogni pull request, prova l'eseguibile sull'esempio e lo pubblica (con `LICENSE`) come artefatto `ScriptaWin-windows-x64`. Nessun `.exe` è salvato nel repository.
 
 ## Pacchetti di distribuzione
 
-Ogni release pubblicata nella pagina [Releases](https://github.com/Finch74/Scripta/releases) fornisce tre pacchetti pronti all'uso. I link qui sotto puntano sempre all'ultima release:
+Le release pubblicate nella pagina [Releases](https://github.com/Finch74/Scripta/releases) forniscono questi pacchetti pronti all'uso. I link qui sotto puntano sempre all'ultima release:
 
 | Pacchetto | Contenuto | Piattaforma |
 |-----------|-----------|-------------|
-| [`Scripta-macOS-arm64.dmg`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-macOS-arm64.dmg) | `Scripta.app` + collegamento ad Applicazioni | macOS 15+, Apple Silicon |
-| [`Scripta-Linux-x86_64.zip`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-Linux-x86_64.zip) | eseguibile `scripta` + cartella `Examples/` | Linux x86_64 (glibc) |
+| [`Scripta-macOS-arm64.dmg`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-macOS-arm64.dmg) | `Scripta.app`, collegamento ad Applicazioni e cartella `Examples/` | macOS 15+, Apple Silicon |
 | [`Scripta-GUI-Linux-x86_64.tar.gz`](https://github.com/Finch74/Scripta/releases/latest/download/Scripta-GUI-Linux-x86_64.tar.gz) | GUI `scripta-gtk`, file `.desktop`, icona, `install.sh`, `Examples/` | Linux x86_64 (glibc) con GTK 4.6+ |
+| `scripta-gtk_<versione>-1_amd64.deb`, `scripta-gtk-<versione>-1.<dist>.x86_64.rpm` | GUI `scripta-gtk` installabile con il gestore di pacchetti | Debian/Ubuntu, Fedora/RHEL |
 
 Se la release include anche `Scripta-GUI-x86_64.AppImage`, è la stessa GUI in un singolo file eseguibile (richiede comunque GTK 4 installato nel sistema).
+
+La CLI `scripta` non è distribuita come pacchetto a sé: si compila con `./build-linux.sh` (vedi [Compilare e usare la CLI su Linux](#compilare-e-usare-la-cli-su-linux)).
 
 Per una versione specifica sostituisci `latest/download` con `download/<tag>`. Per esempio:
 `https://github.com/Finch74/Scripta/releases/download/v1.0.0/Scripta-macOS-arm64.dmg`
@@ -246,32 +273,23 @@ Per una versione specifica sostituisci `latest/download` con `download/<tag>`. P
 Download da terminale (Linux):
 
 ```bash
-curl -LO https://github.com/Finch74/Scripta/releases/latest/download/Scripta-Linux-x86_64.zip
+curl -LO https://github.com/Finch74/Scripta/releases/latest/download/Scripta-GUI-Linux-x86_64.tar.gz
 ```
 
 ### Installare da un pacchetto
 
-**macOS.** Apri `Scripta-macOS-arm64.dmg` e trascina **Scripta** nella cartella **Applicazioni**. L'app ha solo una firma ad-hoc e non è notarizzata. Al primo avvio, quindi, macOS la blocca: fai clic destro su Scripta e scegli **Apri**, oppure rimuovi l'attributo di quarantena:
+**macOS.** Apri `Scripta-macOS-arm64.dmg` e trascina **Scripta** nella cartella **Applicazioni**. Accanto all'app, nel DMG, c'è la cartella **Examples** con i tre documenti di esempio, da trascinare dove preferisci; gli stessi esempi sono già inclusi nell'app come modelli della finestra di benvenuto. L'app ha solo una firma ad-hoc e non è notarizzata. Al primo avvio, quindi, macOS la blocca: fai clic destro su Scripta e scegli **Apri**, oppure rimuovi l'attributo di quarantena:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/Scripta.app
 ```
 
-**Linux.** L'eseguibile include il runtime Swift e Foundation (link statico), quindi non serve installare Swift.
-
-```bash
-unzip Scripta-Linux-x86_64.zip
-cd Scripta-Linux-x86_64
-./scripta Examples/Esempio.fountain
-sudo install -m 755 scripta /usr/local/bin/scripta   # opzionale
-```
-
-**Linux, GUI.** Anche qui il runtime Swift è incluso; serve invece GTK 4, già presente nei desktop GNOME recenti (altrimenti `sudo apt install libgtk-4-1` o `sudo dnf install gtk4`).
+**Linux, GUI.** L'eseguibile include il runtime Swift e Foundation (link statico), quindi non serve installare Swift; serve invece GTK 4, già presente nei desktop GNOME recenti (altrimenti `sudo apt install libgtk-4-1` o `sudo dnf install gtk4`).
 
 ```bash
 tar -xzf Scripta-GUI-Linux-x86_64.tar.gz
 cd Scripta-GUI-Linux-x86_64
-./scripta-gtk Examples/Esempio.fountain   # prova senza installare
+./scripta-gtk Examples/Esempio_Cinematografico.fountain   # prova senza installare
 ./install.sh                              # installa in ~/.local con voce nel menu delle applicazioni
 ./install.sh --uninstall                  # rimuove
 ```
@@ -304,25 +322,9 @@ I pacchetti vengono creati nella cartella `build/`.
 ./package-dmg.sh
 ```
 
-Lo script esegue `./build-app.sh` in modalità release e copia l'app in una cartella temporanea insieme al collegamento `Applications`. Poi crea un'immagine compressa (UDZO) con `diskutil image`, oppure con `hdiutil` sulle versioni di macOS precedenti, e infine la verifica. Risultato: `build/Scripta-macOS-arm64.dmg`.
+Lo script esegue `./build-app.sh` in modalità release e copia in una cartella temporanea l'app, il collegamento `Applications` e la cartella `Examples/`. Poi crea un'immagine compressa (UDZO) con `diskutil image`, oppure con `hdiutil` sulle versioni di macOS precedenti, e infine la verifica. Risultato: `build/Scripta-macOS-arm64.dmg`, che una volta aperto mostra `Scripta.app`, `Applications` ed `Examples`.
 
-**ZIP per Linux**:
-
-```bash
-./package-linux.sh
-```
-
-- **Su Linux** usa la toolchain Swift locale. Il nome dell'archivio riflette l'architettura della macchina (es. `Scripta-Linux-x86_64.zip`). Richiede il comando `zip`.
-- **Su macOS (o altri sistemi)** compila dentro l'immagine Docker ufficiale `swift:6.0` per `linux/amd64` e produce `Scripta-Linux-x86_64.zip`. Richiede Docker. Su Apple Silicon la compilazione avviene in emulazione ed è quindi più lenta.
-
-Variabili utili:
-
-```bash
-SWIFT_IMAGE=swift:6.1 ./package-linux.sh   # usa un'altra immagine Swift
-USE_DOCKER=1 ./package-linux.sh            # forza Docker anche su Linux
-```
-
-La build Linux usa la cartella `.build-linux/`, separata da `.build/`, così non interferisce con la build macOS.
+**CLI per Linux** (anche su macOS), senza pacchetto: `./build-linux.sh` compila `scripta` in release e ne stampa il percorso (vedi sopra).
 
 **Archivio della GUI per Linux** (ed eventuale AppImage):
 
@@ -331,8 +333,8 @@ La build Linux usa la cartella `.build-linux/`, separata da `.build/`, così non
 APPIMAGE=1 ./package-linux-gui.sh   # crea anche build/Scripta-GUI-<arch>.AppImage
 ```
 
-- **Su Linux** usa la toolchain Swift locale e richiede GTK 4 con i file di sviluppo (`libgtk-4-dev`) e `pkg-config`.
-- **Su macOS (o altri sistemi)** compila con Docker per `linux/amd64`. La prima volta lo script crea l'immagine locale `scripta-gtk-builder` (l'immagine `swift:6.0` più `libgtk-4-dev`); le volte successive la riusa.
+- **Su Linux** usa la toolchain Swift locale e richiede i file di sviluppo di GTK 4, WebKitGTK 6.0 e Poppler (`libgtk-4-dev libwebkitgtk-6.0-dev libpoppler-glib-dev`, oppure `gtk4-devel webkitgtk6.0-devel poppler-glib-devel`) e `pkg-config`.
+- **Su macOS (o altri sistemi)** compila con Docker per `linux/amd64`, quindi richiede Docker; su Apple Silicon la compilazione avviene in emulazione ed è più lenta. La prima volta lo script crea l'immagine locale `scripta-gtk-builder` (l'immagine `swift:6.0-noble` più le stesse dipendenze: WebKitGTK 6.0 richiede Ubuntu 24.04); le volte successive la riusa.
 - Il runtime Swift e Foundation sono collegati staticamente, GTK 4 dinamicamente: il sistema di destinazione deve avere GTK 4.6+. Neanche l'AppImage include GTK.
 - Con `APPIMAGE=1` lo script scarica [appimagetool](https://github.com/AppImage/appimagetool) (serve la rete) e lo esegue senza FUSE, quindi anche dentro Docker. Su Linux puoi indicarne uno già installato con `APPIMAGETOOL=/percorso/appimagetool`.
 - Valgono anche qui `SWIFT_IMAGE` e `USE_DOCKER=1`. La build usa la cartella `.build-linux-gui/`.
@@ -356,17 +358,18 @@ Lo script installa Swift con swiftly e le dipendenze di build (`gtk4-devel`, `we
 
 ### Pubblicare una release
 
-I link di download funzionano solo se i file allegati alla release hanno esattamente i nomi `Scripta-macOS-arm64.dmg`, `Scripta-Linux-x86_64.zip` e `Scripta-GUI-Linux-x86_64.tar.gz`. Sono i nomi che producono gli script. Per esempio, con la [GitHub CLI](https://cli.github.com):
+I link di download funzionano solo se i file allegati alla release hanno esattamente i nomi `Scripta-macOS-arm64.dmg` e `Scripta-GUI-Linux-x86_64.tar.gz`. Sono i nomi che producono gli script. Per esempio, con la [GitHub CLI](https://cli.github.com):
 
 ```bash
 ./package-dmg.sh
-./package-linux.sh
 APPIMAGE=1 ./package-linux-gui.sh
 git tag v1.0.0 && git push origin v1.0.0
 gh release create v1.0.0 --repo Finch74/Scripta --title "Scripta 1.0.0" --generate-notes \
-    build/Scripta-macOS-arm64.dmg build/Scripta-Linux-x86_64.zip \
+    build/Scripta-macOS-arm64.dmg \
     build/Scripta-GUI-Linux-x86_64.tar.gz build/Scripta-GUI-x86_64.AppImage
 ```
+
+I pacchetti `.deb` e `.rpm` vanno generati sulla distribuzione di destinazione (`./package-deb.sh`, `./package-rpm.sh`) e allegati allo stesso modo.
 
 ## Usare ScriptaCore in un altro progetto
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Builds Scripta.app (release) and packages it into build/Scripta-macOS-arm64.dmg,
-# a compressed disk image with the app and a symlink to /Applications for drag-and-drop install.
+# a compressed disk image with the app, a symlink to /Applications for drag-and-drop install
+# and the Examples folder.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -17,6 +18,8 @@ mkdir -p "$STAGING"
 # ditto preserves the code signature, extended attributes and the bundle's symlinks.
 ditto "$APP" "$STAGING/Scripta.app"
 ln -s /Applications "$STAGING/Applications"
+# Sample documents (screenplay, graphic novel, prose) next to the app, to drag anywhere and open.
+ditto Examples "$STAGING/Examples"
 
 # `diskutil image` replaces the deprecated `hdiutil create` on recent macOS; older systems lack it.
 if diskutil image create from --help >/dev/null 2>&1; then

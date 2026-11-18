@@ -17,6 +17,8 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" "$APPEX/Contents/MacOS"
 cp "$BIN" "$APP/Contents/MacOS/Scripta"
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 printf 'APPL????' > "$APP/Contents/PkgInfo"
+# Templates of the welcome window (DocumentTemplate in WelcomeWindow.swift).
+ditto Examples "$APP/Contents/Resources/Examples"
 
 # --- Gestione Icona (.png -> .icns) ---
 if [ -f "icon_scripta.png" ]; then

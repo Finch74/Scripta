@@ -29,7 +29,7 @@ jobs:
           New-Item -ItemType Directory -Force -Path dist | Out-Null
           Copy-Item (Join-Path $bin 'ScriptaWin.exe') dist/
           Copy-Item LICENSE dist/
-          ./dist/ScriptaWin.exe Examples/Esempio.fountain
+          ./dist/ScriptaWin.exe Examples/Esempio_Cinematografico.fountain
 
       - name: Upload artefatto
         uses: actions/upload-artifact@v4

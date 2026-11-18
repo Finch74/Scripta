@@ -3,6 +3,8 @@ import SwiftUI
 import ScriptaCore
 
 struct ScriptaApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
     init() {
         let stored = UserDefaults.standard.string(forKey: AppTheme.storageKey)
         (stored.flatMap(AppTheme.init(rawValue:)) ?? .system).apply()
@@ -16,6 +18,7 @@ struct ScriptaApp: App {
         .defaultSize(width: 980, height: 1040)
         .commands {
             AboutCommands()
+            WelcomeCommands()
             // The default Edit menu is kept as-is: Cut/Copy/Paste/Select All are nil-targeted
             // and validated by AppKit, so they reach whichever NSTextView is first responder.
             ExportCommands()

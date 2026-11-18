@@ -1,4 +1,9 @@
 import Foundation
+#if canImport(CoreGraphics)
+// Explicit, so that CGSize/CGFloat are serialized from the same module ScriptaApp sees: without it,
+// the release build (cross-module optimization) crashes swift-frontend 6.4 deserializing `contentSize`.
+import CoreGraphics
+#endif
 
 // Platform-independent export settings, shared by the macOS app (WebKit/PDFKit), the GTK front end
 // (WebKitGTK/Poppler) and the Quick Look extension (built from the same sources as a single module).

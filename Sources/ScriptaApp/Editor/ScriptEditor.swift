@@ -242,10 +242,6 @@ final class EditorTextView: NSTextView {
         }
         return true
     }
-    
-    func changeSpellCheckLanguage(to languageCode: String) {
-        NSSpellChecker.shared.setLanguage(languageCode)
-    }
 }
 
 /// Lets SwiftUI views (e.g. the outline sidebar) drive the caret of the AppKit editor.
@@ -369,10 +365,6 @@ struct ScriptEditor: NSViewRepresentable {
         textView.autoresizingMask = [.width]
         textView.minSize = NSSize(width: 0, height: 0)
         textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-
-        if let preferredLang = NSSpellChecker.shared.availableLanguages.first {
-            NSSpellChecker.shared.setLanguage(preferredLang)
-        }
 
         let scrollView = NSScrollView()
         scrollView.hasVerticalScroller = true

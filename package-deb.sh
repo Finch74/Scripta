@@ -27,8 +27,8 @@ command -v dpkg-deb >/dev/null || { echo "dpkg-deb non trovato: serve un sistema
 [ "$(id -u)" -ne 0 ] || echo "Attenzione: eseguito come root, swiftly verrebbe installato in /root." >&2
 
 # The About dialog shows the license embedded in License.swift: it must match LICENSE exactly.
-diff -q <(sed '1,/^let licenseText = """$/d; /^"""$/,$d' Sources/ScriptaGTK/License.swift) LICENSE >/dev/null || {
-    echo "Sources/ScriptaGTK/License.swift non corrisponde a LICENSE: aggiornalo prima di creare il pacchetto." >&2
+diff -q <(sed '1,/^public let licenseText = """$/d; /^"""$/,$d' Sources/ScriptaCore/License.swift) LICENSE >/dev/null || {
+    echo "Sources/ScriptaCore/License.swift non corrisponde a LICENSE: aggiornalo prima di creare il pacchetto." >&2
     exit 1
 }
 

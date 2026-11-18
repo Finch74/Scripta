@@ -15,6 +15,7 @@ struct ScriptaApp: App {
         }
         .defaultSize(width: 980, height: 1040)
         .commands {
+            AboutCommands()
             // The default Edit menu is kept as-is: Cut/Copy/Paste/Select All are nil-targeted
             // and validated by AppKit, so they reach whichever NSTextView is first responder.
             ExportCommands()

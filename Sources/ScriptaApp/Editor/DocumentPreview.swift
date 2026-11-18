@@ -28,14 +28,29 @@ enum EditorViewMode: String, CaseIterable, Identifiable {
 struct DocumentPreview: NSViewRepresentable {
     let html: String
 
-    final class Coordinator {
+    @MainActor
+    final class Coordinator: NSObject, WKNavigationDelegate {
         var loadedHTML: String?
+
+        /// Links open in the default browser: navigating inside the preview would replace the document.
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+                     decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
+            // In-page anchors (about:blank#…) are left to WebKit.
+            guard navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url,
+                  ["http", "https", "mailto"].contains(url.scheme?.lowercased() ?? "") else {
+                decisionHandler(.allow)
+                return
+            }
+            decisionHandler(.cancel)
+            NSWorkspace.shared.open(url)
+        }
     }
 
     func makeCoordinator() -> Coordinator { Coordinator() }
 
     func makeNSView(context: Context) -> WKWebView {
         let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        webView.navigationDelegate = context.coordinator
         webView.allowsMagnification = true
         load(webView, context: context)
         // Take keyboard focus from the (hidden) editor so typing cannot modify the document.

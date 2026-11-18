@@ -1,5 +1,6 @@
 import CGtk
 import Foundation
+import ScriptaCore
 
 /// `scripta-gtk`: the native Linux GUI of Scripta, built on GTK 4 and ScriptaCore.
 ///

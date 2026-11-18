@@ -1,6 +1,6 @@
-// Full text of LICENSE in the repository root, shown in the About dialog.
+// Full text of LICENSE in the repository root, shown in the About window of every front end.
 // Keep it identical to LICENSE: package-deb.sh refuses to build if the two differ.
-let licenseText = """
+public let licenseText = """
 MIT License
 
 Copyright (c) 2026 Finch74

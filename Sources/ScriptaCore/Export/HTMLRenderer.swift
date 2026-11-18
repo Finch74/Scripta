@@ -402,11 +402,22 @@ public enum HTMLRenderer {
                 case .underline: out += "<u>\(inner)</u>"
                 case .code: out += "<code>\(escape(ns.substring(with: content)))</code>"
                 case .note: out += "<span class=\"note\">[\(inner)]</span>"
-                case .link(let url): out += "<a href=\"\(escapeAttribute(url))\">\(inner)</a>"
+                case .link(let url):
+                    out += isSafeLink(url) ? "<a href=\"\(escapeAttribute(url))\">\(inner)</a>" : inner
                 }
             }
         }
         return out
+    }
+
+    /// Relative links and web/mail links only: `javascript:`, `data:`, `file:`… would run or open
+    /// content from the exported HTML, the in-app preview and Quick Look.
+    private static func isSafeLink(_ url: String) -> Bool {
+        guard let colon = url.firstIndex(of: ":") else { return true }
+        // A colon after a path, query or fragment separator is not a scheme ("notes/a:b", "#x:y").
+        if url[..<colon].contains(where: { "/?#".contains($0) }) { return true }
+        let scheme = url[..<colon].lowercased()
+        return ["http", "https", "mailto"].contains(scheme)
     }
 
     /// Inline text with markup removed (for titles and metadata).

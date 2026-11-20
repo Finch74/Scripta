@@ -47,18 +47,27 @@ final class SyntaxHighlighter: NSObject, NSTextStorageDelegate {
         apply(to: storage, editedRange: NSRange(location: 0, length: storage.length), delta: 0)
         storage.endEditing()
         isApplying = false
+        textView?.typingAttributes = style.baseAttributes
     }
 
     // MARK: - NSTextStorageDelegate
 
+    /// Styling runs in *did*ProcessEditing, not willProcessEditing. Attribute changes made in
+    /// willProcessEditing are merged into the storage's edited range, and NSTextView places the caret
+    /// from that range: restyling whole lines (or the whole document) there moved the caret to the end
+    /// of the restyled text after a deletion, so the next keystrokes landed in the wrong place.
     nonisolated func textStorage(_ textStorage: NSTextStorage,
-                                 willProcessEditing editedMask: NSTextStorageEditActions,
+                                 didProcessEditing editedMask: NSTextStorageEditActions,
                                  range editedRange: NSRange,
                                  changeInLength delta: Int) {
         guard editedMask.contains(.editedCharacters) else { return }
         // Text storage edits always originate from the text view on the main thread.
         nonisolated(unsafe) let textStorage = textStorage
         MainActor.assumeIsolated {
+            #if DEBUG
+            // TEMP DEBUG: trace edits while investigating the selection-delete freeze.
+            print("[Editor] didProcessEditing range=\(NSStringFromRange(editedRange)) delta=\(delta) length=\(textStorage.length) applying=\(isApplying)")
+            #endif
             guard !isApplying else { return }
             // Never restyle while an input method is composing (dead keys, accents, CJK…).
             if let textView, textView.hasMarkedText() {
@@ -66,14 +75,20 @@ final class SyntaxHighlighter: NSObject, NSTextStorageDelegate {
                 return
             }
             isApplying = true
-            apply(to: textStorage, editedRange: editedRange, delta: delta)
+            // fixAttributes already ran before this callback: redo it on the restyled text so
+            // characters missing from the editor font (emoji, CJK…) still get a fallback font.
+            if let restyled = apply(to: textStorage, editedRange: editedRange, delta: delta) {
+                textStorage.fixAttributes(in: restyled)
+            }
             isApplying = false
         }
     }
 
     // MARK: - Styling
 
-    private func apply(to storage: NSTextStorage, editedRange: NSRange, delta: Int) {
+    /// Returns the range whose fonts were changed, if any.
+    @discardableResult
+    private func apply(to storage: NSTextStorage, editedRange: NSRange, delta: Int) -> NSRange? {
         let ns = storage.mutableString as NSString
         let length = ns.length
         let lines = mode == .screenplay ? FountainParser.parse(ns) : MarkdownParser.parse(ns)
@@ -89,7 +104,9 @@ final class SyntaxHighlighter: NSObject, NSTextStorageDelegate {
             return length == 0 ? NSRange(location: 0, length: 0) : ns.lineRange(for: clamped)
         }()
 
+        var restyled: NSRange?
         if full, length > 0 {
+            restyled = NSRange(location: 0, length: length)
             storage.setAttributes(style.baseAttributes, range: NSRange(location: 0, length: length))
         }
 
@@ -112,7 +129,10 @@ final class SyntaxHighlighter: NSObject, NSTextStorageDelegate {
                     restyle = signatures[oldLocation] != signature
                 }
             }
-            if restyle { style(line, in: storage, ns: ns, reset: !full) }
+            if restyle {
+                style(line, in: storage, ns: ns, reset: !full)
+                restyled = restyled.map { NSUnionRange($0, line.fullRange) } ?? line.fullRange
+            }
         }
         signatures = newSignatures
         overlays = newOverlays
@@ -122,7 +142,10 @@ final class SyntaxHighlighter: NSObject, NSTextStorageDelegate {
             storage.addAttribute(.foregroundColor, value: isNote ? EditorStyle.notesColor : EditorStyle.boneyardColor, range: range)
         }
 
-        textView?.typingAttributes = style.baseAttributes
+        // Typing attributes are not set here: inside processEditing the text view's selection still
+        // refers to the old text, and setTypingAttributes makes the font panel read attributes at it,
+        // which throws NSRangeException once the whole document has been deleted.
+        return restyled
     }
 
     private func style(_ line: ScriptLine, in storage: NSTextStorage, ns: NSString, reset: Bool) {

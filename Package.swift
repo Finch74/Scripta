@@ -1,7 +1,8 @@
 // swift-tools-version: 6.0
 import PackageDescription
 
-// ScriptaCore and the `scripta` CLI build everywhere. The GUI front ends are platform-specific:
+// ScriptaCore and the `scripta` CLI (Sources/) build everywhere. The GUI front ends are platform-specific
+// and live with their scripts and resources in the macOS/, Linux/ and Windows/ folders:
 // ScriptaApp needs AppKit/SwiftUI (macOS), ScriptaGTK needs GTK 4 (Linux, found via pkg-config),
 // ScriptaWin (Windows) depends on ScriptaCore only. The CGtk/CWebKit/CPoppler system libraries are
 // declared only inside the Linux branch, so they are never resolved on macOS or Windows.
@@ -30,7 +31,7 @@ targets.append(
     .executableTarget(
         name: "ScriptaApp",
         dependencies: ["ScriptaCore"],
-        path: "Sources/ScriptaApp",
+        path: "macOS/ScriptaApp",
         swiftSettings: [.swiftLanguageMode(.v6)]
     )
 )
@@ -39,14 +40,14 @@ products.append(.executable(name: "scripta-gtk", targets: ["ScriptaGTK"]))
 targets.append(contentsOf: [
     .systemLibrary(
         name: "CGtk",
-        path: "Sources/CGtk",
+        path: "Linux/CGtk",
         pkgConfig: "gtk4",
         providers: [.apt(["libgtk-4-dev"]), .yum(["gtk4-devel"])]
     ),
     // PDF export: WebKitGTK paginates the HTML, Poppler + cairo add page numbers and metadata.
     .systemLibrary(
         name: "CWebKit",
-        path: "Sources/CWebKit",
+        path: "Linux/CWebKit",
         pkgConfig: "webkitgtk-6.0",
         providers: [.apt(["libwebkitgtk-6.0-dev"]), .yum(["webkitgtk6.0-devel"])]
     ),
@@ -55,13 +56,13 @@ targets.append(contentsOf: [
     // GLib and cairo flags already come from gtk4.
     .systemLibrary(
         name: "CPoppler",
-        path: "Sources/CPoppler",
+        path: "Linux/CPoppler",
         providers: [.apt(["libpoppler-glib-dev"]), .yum(["poppler-glib-devel"])]
     ),
     .executableTarget(
         name: "ScriptaGTK",
         dependencies: ["ScriptaCore", "CGtk", "CWebKit", "CPoppler"],
-        path: "Sources/ScriptaGTK",
+        path: "Linux/ScriptaGTK",
         swiftSettings: [.swiftLanguageMode(.v6)]
     ),
 ])
@@ -72,7 +73,7 @@ targets.append(
     .executableTarget(
         name: "ScriptaWin",
         dependencies: ["ScriptaCore"],
-        path: "Sources/ScriptaWin",
+        path: "Windows/ScriptaWin",
         swiftSettings: [.swiftLanguageMode(.v6)]
     )
 )

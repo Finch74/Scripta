@@ -95,6 +95,7 @@ final class EditorTextView: NSTextView {
         } else {
             return
         }
+        ensureLayout(below: lineRect)
 
         let clipView = scrollView.contentView
         let maxY = max(0, frame.height - clipView.bounds.height)
@@ -102,6 +103,16 @@ final class EditorTextView: NSTextView {
         guard abs(clipView.bounds.origin.y - targetY) >= 1 else { return }
         clipView.scroll(to: NSPoint(x: clipView.bounds.origin.x, y: targetY))
         scrollView.reflectScrolledClipView(clipView)
+    }
+
+    /// Lays out one viewport of text below `lineRect`. With non-contiguous layout the view is only
+    /// as tall as the text laid out so far: without this, scrolling to a line near the start of a
+    /// freshly opened document is clamped by a too-short frame and the editor does not move.
+    func ensureLayout(below lineRect: NSRect) {
+        guard let layoutManager, let textContainer, let scrollView = enclosingScrollView else { return }
+        let viewport = NSRect(x: 0, y: lineRect.minY, width: textContainer.size.width,
+                              height: scrollView.contentView.bounds.height + lineRect.height)
+        layoutManager.ensureLayout(forBoundingRect: viewport, in: textContainer)
     }
 
     // MARK: - Focus mode
@@ -244,10 +255,23 @@ final class EditorTextView: NSTextView {
     }
 }
 
-/// Lets SwiftUI views (e.g. the outline sidebar) drive the caret of the AppKit editor.
+/// Lets SwiftUI views (e.g. the outline sidebar) drive the caret of the AppKit editor,
+/// and publishes the caret position back so the outline can follow it.
 @MainActor
-final class EditorNavigator {
+final class EditorNavigator: ObservableObject {
     fileprivate weak var textView: EditorTextView?
+
+    /// UTF-16 location of the caret (start of the selection) in the editor.
+    @Published private(set) var caretLocation = 0
+
+    /// Called by the editor on every selection change. Deferred because selection changes
+    /// also happen inside SwiftUI view updates (`updateNSView`), where publishing is not allowed.
+    fileprivate func caretDidMove(to location: Int) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self, self.caretLocation != location else { return }
+            self.caretLocation = location
+        }
+    }
 
     /// Gives keyboard focus back to the editor (e.g. when leaving the preview).
     func focus() {
@@ -259,22 +283,44 @@ final class EditorNavigator {
     func reveal(location: Int) {
         guard let textView, let layoutManager = textView.layoutManager,
               let scrollView = textView.enclosingScrollView else { return }
-        let location = min(max(0, location), (textView.string as NSString).length)
+        let length = (textView.string as NSString).length
+        // TEMP DEBUG: remove once outline navigation is confirmed in the app.
+        print("[Outline Click] Target UTF16 Location: \(location), Total Storage Length: \(textView.textStorage?.length ?? 0)")
+        let location = min(max(0, location), length)
         let caret = NSRange(location: location, length: 0)
+
+        // Non-contiguous layout: make sure everything up to the target is laid out before measuring.
+        layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: location))
+        let lineRect: NSRect
+        if location == length, layoutManager.extraLineFragmentTextContainer != nil {
+            lineRect = layoutManager.extraLineFragmentRect
+        } else if length > 0 {
+            let glyph = layoutManager.glyphIndexForCharacter(at: min(location, length - 1))
+            lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyph, effectiveRange: nil)
+        } else {
+            lineRect = .zero
+        }
+        textView.ensureLayout(below: lineRect)
+        let clipView = scrollView.contentView
+        let maxY = max(0, textView.frame.height - clipView.bounds.height)
+        let targetY = min(maxY, max(0, lineRect.minY + textView.textContainerOrigin.y - 24))
+
+        // A click on a row can arrive twice (selection change + tap): nothing to do if already there.
+        if textView.selectedRange() == caret, textView.window?.firstResponder === textView,
+           textView.typewriterScrolling || abs(clipView.bounds.origin.y - targetY) < 1 {
+            return
+        }
 
         textView.window?.makeFirstResponder(textView)
         textView.setSelectedRange(caret)
 
-        // Non-contiguous layout: make sure everything up to the target is laid out before measuring.
-        layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: location))
-        let glyph = layoutManager.glyphIndexForCharacter(at: location)
-        let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyph, effectiveRange: nil)
-
-        let clipView = scrollView.contentView
-        let maxY = max(0, textView.frame.height - clipView.bounds.height)
-        let targetY = min(maxY, max(0, lineRect.minY + textView.textContainerOrigin.y - 24))
-        clipView.scroll(to: NSPoint(x: clipView.bounds.origin.x, y: targetY))
-        scrollView.reflectScrolledClipView(clipView)
+        if textView.typewriterScrolling {
+            // Keep the typewriter invariant: the caret line sits at the vertical centre.
+            textView.centerCaretLine()
+        } else {
+            clipView.scroll(to: NSPoint(x: clipView.bounds.origin.x, y: targetY))
+            scrollView.reflectScrolledClipView(clipView)
+        }
 
         let lineRange = (textView.string as NSString).lineRange(for: caret)
         if lineRange.length > 0 { textView.showFindIndicator(for: lineRange) }
@@ -380,6 +426,10 @@ struct ScriptEditor: NSViewRepresentable {
         let coordinator = context.coordinator
         coordinator.parent = self
         guard let textView = coordinator.textView, let storage = textView.textStorage else { return }
+        #if DEBUG
+        // TEMP DEBUG: a text mismatch here would overwrite the editor (and reset the selection).
+        print("[Editor] updateNSView selection=\(NSStringFromRange(textView.selectedRange())) textInSync=\(textView.string == text) firstResponder=\(textView.window?.firstResponder === textView) editable=\(textView.isEditable)")
+        #endif
         navigator?.textView = textView
 
         if scrollView.appearance?.name != theme.appearance?.name {
@@ -428,7 +478,29 @@ struct ScriptEditor: NSViewRepresentable {
 
         func textDidChange(_ notification: Notification) {
             guard !isSettingText, let textView else { return }
+            // An emptied document has no character to take typing attributes from: reset them here,
+            // once the edit and the selection are settled, so the next keystroke is not a stale heading.
+            if textView.textStorage?.length == 0 {
+                textView.typingAttributes = highlighter.style.baseAttributes
+            }
             parent.text = textView.string
         }
+
+        func textViewDidChangeSelection(_ notification: Notification) {
+            guard let textView else { return }
+            #if DEBUG
+            // TEMP DEBUG: trace selection changes while investigating the selection-delete freeze.
+            print("[Editor] selection → \(NSStringFromRange(textView.selectedRange()))")
+            #endif
+            parent.navigator?.caretDidMove(to: textView.selectedRange().location)
+        }
+
+        #if DEBUG
+        // TEMP DEBUG: trace replacements (typing, Backspace/Delete on a selection, cut, paste).
+        func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
+            print("[Editor] shouldChangeText range=\(NSStringFromRange(affectedCharRange)) replacement=\(replacementString.map { "\($0.count) chars" } ?? "attributes only")")
+            return true
+        }
+        #endif
     }
 }

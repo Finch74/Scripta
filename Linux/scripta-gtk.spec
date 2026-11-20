@@ -1,5 +1,5 @@
 # RPM spec for ScriptaGTK, the GTK 4 front end of Scripta.
-# Build it with ./package-rpm.sh, which creates the source tarball and passes the version.
+# Build it with Linux/package-rpm.sh, which creates the source tarball and passes the version.
 #
 # Swift is not a BuildRequires: on most systems it comes from swiftly (in the user's home), not from
 # an RPM, so rpmbuild could not see it. %%build uses `swift` from PATH, or the path in %%{swift}
@@ -62,8 +62,8 @@ BIN="$(%{swift} build -c release --show-bin-path)/%{name}"
 install -Dm755 "$BIN" %{buildroot}%{_bindir}/%{name}
 strip --strip-unneeded %{buildroot}%{_bindir}/%{name}
 # Exec=scripta-gtk resolves through PATH, and /usr/bin is always in it: the .desktop is used as is.
-install -Dm644 Resources/Linux/%{app_id}.desktop %{buildroot}%{_datadir}/applications/%{app_id}.desktop
-install -Dm644 Resources/Linux/%{app_id}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{app_id}.png
+install -Dm644 Linux/Resources/%{app_id}.desktop %{buildroot}%{_datadir}/applications/%{app_id}.desktop
+install -Dm644 Linux/Resources/%{app_id}.png %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/%{app_id}.png
 
 %check
 command -v desktop-file-validate >/dev/null && \

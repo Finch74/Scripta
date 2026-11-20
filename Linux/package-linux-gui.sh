@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds the GTK 4 GUI `scripta-gtk` (ScriptaCore + Sources/ScriptaGTK) in release mode for Linux and
+# Builds the GTK 4 GUI `scripta-gtk` (ScriptaCore + Linux/ScriptaGTK) in release mode for Linux and
 # packages it into build/Scripta-GUI-Linux-<arch>.tar.gz, with the .desktop file, the icon,
 # install.sh and Examples/. With APPIMAGE=1 it also creates build/Scripta-GUI-<arch>.AppImage.
 #
@@ -12,7 +12,8 @@
 # Variables: SWIFT_IMAGE (default swift:6.0-noble; WebKitGTK 6.0 needs Ubuntu 24.04+), USE_DOCKER=1 to force Docker on Linux too,
 # APPIMAGE=1 to build the AppImage, APPIMAGETOOL=<path> to use a local appimagetool (Linux without Docker).
 set -euo pipefail
-cd "$(dirname "$0")"
+# Paths below are relative to the repository root, one level up from this script.
+cd "$(dirname "$0")/.."
 
 SWIFT_IMAGE="${SWIFT_IMAGE:-swift:6.0-noble}"
 # Separate scratch path, so this build never mixes with the macOS one (.build/) or the CLI one (.build-linux/).
@@ -54,8 +55,8 @@ ARCHIVE="build/$NAME.tar.gz"
 rm -rf "$STAGING" "$ARCHIVE"
 mkdir -p "$STAGING"
 install -m 755 "$BIN" "$STAGING/scripta-gtk"
-install -m 755 Resources/Linux/install.sh "$STAGING/install.sh"
-install -m 644 "Resources/Linux/$ID.desktop" "Resources/Linux/$ID.png" "$STAGING/"
+install -m 755 Linux/Resources/install.sh "$STAGING/install.sh"
+install -m 644 "Linux/Resources/$ID.desktop" "Linux/Resources/$ID.png" "$STAGING/"
 cp -R Examples "$STAGING/Examples"
 
 # COPYFILE_DISABLE keeps macOS tar from adding ._ metadata files.
@@ -68,11 +69,11 @@ if [ "${APPIMAGE:-0}" = "1" ]; then
     rm -rf "$APPDIR" "$APPIMAGE_FILE"
     # Like `install -Dm`, which BSD install (macOS) lacks.
     put() { mkdir -p "$(dirname "$3")" && install -m "$1" "$2" "$3"; }
-    put 755 Resources/Linux/AppRun "$APPDIR/AppRun"
+    put 755 Linux/Resources/AppRun "$APPDIR/AppRun"
     put 755 "$BIN" "$APPDIR/usr/bin/scripta-gtk"
-    put 644 "Resources/Linux/$ID.desktop" "$APPDIR/usr/share/applications/$ID.desktop"
-    put 644 "Resources/Linux/$ID.png" "$APPDIR/usr/share/icons/hicolor/256x256/apps/$ID.png"
-    cp "Resources/Linux/$ID.desktop" "Resources/Linux/$ID.png" "$APPDIR/"
+    put 644 "Linux/Resources/$ID.desktop" "$APPDIR/usr/share/applications/$ID.desktop"
+    put 644 "Linux/Resources/$ID.png" "$APPDIR/usr/share/icons/hicolor/256x256/apps/$ID.png"
+    cp "Linux/Resources/$ID.desktop" "Linux/Resources/$ID.png" "$APPDIR/"
     ln -s "$ID.png" "$APPDIR/.DirIcon"
 
     TOOL="${APPIMAGETOOL:-}"

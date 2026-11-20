@@ -1,5 +1,5 @@
 // Full text of LICENSE in the repository root, shown in the About window of every front end.
-// Keep it identical to LICENSE: package-deb.sh refuses to build if the two differ.
+// Keep it identical to LICENSE: Linux/package-deb.sh and package-rpm.sh refuse to build if the two differ.
 public let licenseText = """
 MIT License
 

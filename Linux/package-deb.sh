@@ -1,21 +1,22 @@
 #!/bin/bash
 # Builds the GTK 4 GUI `scripta-gtk` in release mode and packages it as a Debian/Ubuntu .deb
-# in the project root: scripta-gtk_<version>-<revision>_<arch>.deb
+# in Linux/: Linux/scripta-gtk_<version>-<revision>_<arch>.deb
 #
 # Steps:
 #   1. Swift (to build): if `swift` is not in PATH, installs it for the current user with swiftly.
 #   2. Build dependencies: if libgtk-4-dev, libwebkitgtk-6.0-dev or libpoppler-glib-dev are missing,
 #      installs them with `sudo apt-get install` (disable with INSTALL_DEPS=0).
 #   3. `swift build -c release --product scripta-gtk --static-swift-stdlib`.
-#   4. Stages /usr/bin/scripta-gtk, the .desktop file and the icon from Resources/Linux/, the MIT license
+#   4. Stages /usr/bin/scripta-gtk, the .desktop file and the icon from Linux/Resources/, the MIT license
 #      and the examples, writes DEBIAN/control (Depends: the three -dev packages) and DEBIAN/postinst,
 #      which installs Swift with swiftly if it is missing, then builds the .deb.
 #
-# Variables: VERSION (default: CFBundleShortVersionString from Resources/Info.plist), REVISION (default 1),
+# Variables: VERSION (default: CFBundleShortVersionString from macOS/Resources/Info.plist), REVISION (default 1),
 # MAINTAINER (default: git user.name <user.email>), INSTALL_DEPS=0 to skip the apt-get step.
 # Run it as a normal user, not with sudo: swiftly and the Swift build belong in your home directory.
 set -euo pipefail
-cd "$(dirname "$0")"
+# Paths below are relative to the repository root, one level up from this script.
+cd "$(dirname "$0")/.."
 
 ID="io.github.finch74.Scripta"
 PKG="scripta-gtk"
@@ -85,7 +86,7 @@ swift build -c release --product "$PKG" --static-swift-stdlib
 BIN="$(swift build -c release --show-bin-path)/$PKG"
 
 # --- 4. .deb layout ----------------------------------------------------------------------------------
-VERSION="${VERSION:-$(sed -n '/CFBundleShortVersionString/{n;s/.*<string>\(.*\)<\/string>.*/\1/p;}' Resources/Info.plist)}"
+VERSION="${VERSION:-$(sed -n '/CFBundleShortVersionString/{n;s/.*<string>\(.*\)<\/string>.*/\1/p;}' macOS/Resources/Info.plist)}"
 VERSION="${VERSION:-1.0}"
 REVISION="${REVISION:-1}"
 ARCH="$(dpkg --print-architecture)"
@@ -94,15 +95,15 @@ if [ -z "${MAINTAINER:-}" ]; then
 fi
 
 ROOT="build/deb/${PKG}_${VERSION}-${REVISION}_${ARCH}"
-DEB="${PKG}_${VERSION}-${REVISION}_${ARCH}.deb"
+DEB="Linux/${PKG}_${VERSION}-${REVISION}_${ARCH}.deb"
 DOC="$ROOT/usr/share/doc/$PKG"
 rm -rf "$ROOT" "$DEB"
 
 install -Dm755 "$BIN" "$ROOT/usr/bin/$PKG"
 strip --strip-unneeded "$ROOT/usr/bin/$PKG"
 # Exec=scripta-gtk resolves through PATH, and /usr/bin is always in it: the .desktop is used as is.
-install -Dm644 "Resources/Linux/$ID.desktop" "$ROOT/usr/share/applications/$ID.desktop"
-install -Dm644 "Resources/Linux/$ID.png" "$ROOT/usr/share/icons/hicolor/256x256/apps/$ID.png"
+install -Dm644 "Linux/Resources/$ID.desktop" "$ROOT/usr/share/applications/$ID.desktop"
+install -Dm644 "Linux/Resources/$ID.png" "$ROOT/usr/share/icons/hicolor/256x256/apps/$ID.png"
 install -d "$DOC/examples"
 install -m644 Examples/* "$DOC/examples/"
 install -m644 LICENSE "$DOC/LICENSE"

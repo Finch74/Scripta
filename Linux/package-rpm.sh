@@ -1,6 +1,6 @@
 #!/bin/bash
 # Builds the GTK 4 GUI `scripta-gtk` in release mode and packages it as a Fedora/RHEL .rpm
-# in the project root: scripta-gtk-<version>-<release>.<dist>.<arch>.rpm
+# in Linux/: Linux/scripta-gtk-<version>-<release>.<dist>.<arch>.rpm
 #
 # Steps:
 #   1. Swift (to build): if `swift` is not in PATH, installs it for the current user with swiftly.
@@ -9,15 +9,16 @@
 #   3. Source tarball from the files tracked by git (working tree, so uncommitted edits are included).
 #   4. rpmbuild -bb scripta-gtk.spec in a throwaway topdir (build/rpm), removed at the end.
 #
-# Variables: VERSION (default: CFBundleShortVersionString from Resources/Info.plist),
+# Variables: VERSION (default: CFBundleShortVersionString from macOS/Resources/Info.plist),
 # INSTALL_DEPS=0 to skip the dnf step, NODEPS=1 to skip rpmbuild's BuildRequires check (automatic on
 # systems without an RPM database, e.g. Debian/Ubuntu, where the -devel packages are named differently).
 # Run it as a normal user, not with sudo: swiftly and the Swift build belong in your home directory.
 set -euo pipefail
-cd "$(dirname "$0")"
+# Paths below are relative to the repository root, one level up from this script.
+cd "$(dirname "$0")/.."
 
 PKG="scripta-gtk"
-SPEC="$PKG.spec"
+SPEC="Linux/$PKG.spec"
 BUILD_DEPS=(gtk4-devel webkitgtk6.0-devel poppler-glib-devel pkgconf-pkg-config gcc binutils)
 
 [ "$(uname -s)" = "Linux" ] || { echo "package-rpm.sh va eseguito su Linux." >&2; exit 1; }
@@ -85,15 +86,15 @@ else
 fi
 
 # --- 3. Source tarball -------------------------------------------------------------------------------
-VERSION="${VERSION:-$(sed -n '/CFBundleShortVersionString/{n;s/.*<string>\(.*\)<\/string>.*/\1/p;}' Resources/Info.plist)}"
+VERSION="${VERSION:-$(sed -n '/CFBundleShortVersionString/{n;s/.*<string>\(.*\)<\/string>.*/\1/p;}' macOS/Resources/Info.plist)}"
 VERSION="${VERSION:-1.0}"
 TOPDIR="$PWD/build/rpm"
 rm -rf "$TOPDIR"
 mkdir -p "$TOPDIR"/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 
-# Tracked files only (no .build/, no previous packages); the macOS-only parts and prebuilt
+# Tracked files only (no .build/, no previous packages); the macOS and Windows front ends and prebuilt
 # packages are not needed to build on Linux.
-git ls-files -z -- . ':!*.dmg' ':!*.deb' ':!*.rpm' ':!QuickLook' ':!Sources/ScriptaApp' \
+git ls-files -z -- . ':!*.dmg' ':!*.deb' ':!*.rpm' ':!macOS' ':!Windows' \
     | tar --null -T - --transform "s,^,$PKG-$VERSION/," -czf "$TOPDIR/SOURCES/$PKG-$VERSION.tar.gz"
 cp "$SPEC" "$TOPDIR/SPECS/"
 
@@ -103,15 +104,15 @@ rpmbuild -bb "${RPMBUILD_OPTS[@]}" \
     --define "_topdir $TOPDIR" \
     --define "version_override $VERSION" \
     --define "swift $SWIFT" \
-    "$TOPDIR/SPECS/$SPEC"
+    "$TOPDIR/SPECS/$(basename "$SPEC")"
 
 shopt -s nullglob
 rpms=("$TOPDIR"/RPMS/*/"$PKG"-"$VERSION"-*.rpm)
 [ ${#rpms[@]} -gt 0 ] || { echo "Nessun pacchetto prodotto." >&2; exit 1; }
 for r in "${rpms[@]}"; do
-    rm -f "./$(basename "$r")"
-    mv "$r" .
-    RPM="$(basename "$r")"
+    RPM="Linux/$(basename "$r")"
+    rm -f "$RPM"
+    mv "$r" "$RPM"
     echo "Creato $RPM ($(du -h "$RPM" | cut -f1))"
 done
 rm -rf "$TOPDIR"

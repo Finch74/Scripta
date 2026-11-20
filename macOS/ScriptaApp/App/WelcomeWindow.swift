@@ -56,6 +56,9 @@ struct DocumentTemplate: Identifiable, Hashable {
     let summary: String
     let symbolName: String
 
+    /// Whether the template is a Fountain screenplay (Courier page) rather than Markdown prose.
+    var isScreenplay: Bool { (id as NSString).pathExtension == "fountain" }
+
     static let scripts: [DocumentTemplate] = [
         DocumentTemplate(id: "Esempio_Cinematografico.fountain", title: "Sceneggiatura",
                          summary: "Cinema e TV in Fountain: scene INT./EXT., azione, personaggi, dialoghi e transizioni.",
@@ -68,19 +71,24 @@ struct DocumentTemplate: Identifiable, Hashable {
                          symbolName: "book.closed"),
     ]
 
-    /// The example file, if available: bundled by build-app.sh in Contents/Resources/Examples (or at the
+    /// The example file, if available: bundled by macOS/build-app.sh in Contents/Resources/Examples (or at the
     /// top of Resources) or, in debug builds run as a bare executable (swift run), the repository's Examples.
     var url: URL? {
         let name = (id as NSString).deletingPathExtension, ext = (id as NSString).pathExtension
         var candidates = [Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Examples"),
                           Bundle.main.url(forResource: name, withExtension: ext)]
         #if DEBUG
-        // Sources/ScriptaApp/App/WelcomeWindow.swift → repository root.
+        // macOS/ScriptaApp/App/WelcomeWindow.swift → repository root.
         candidates.append(URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent().appendingPathComponent("Examples").appendingPathComponent(id))
         #endif
         return candidates.compactMap { $0 }.first { FileManager.default.isReadableFile(atPath: $0.path) }
+    }
+
+    /// The text the document starts with: the example file or, without it, `defaultText`.
+    var text: String {
+        url.flatMap { try? String(contentsOf: $0, encoding: .utf8) } ?? defaultText
     }
 
     /// Starting text used when the example file is missing (bare release executable, incomplete bundle),
@@ -172,6 +180,16 @@ enum WelcomeActions {
         }
     }
 
+    /// An empty untitled document of the default type, like File → New.
+    static func newBlankDocument() {
+        do {
+            _ = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true)
+            WelcomeWindowController.close()
+        } catch {
+            NSApp.presentError(error)
+        }
+    }
+
     static func open(_ url: URL) {
         NSDocumentController.shared.openDocument(withContentsOf: url, display: true) { document, _, error in
             if let error {
@@ -254,7 +272,8 @@ final class WelcomeModel: ObservableObject {
 
     @Published private(set) var recentURLs: [URL] = []
     @Published var tab: Tab = .templates
-    @Published var selectedTemplate: DocumentTemplate.ID? = DocumentTemplate.scripts.first?.id
+    /// No template is selected at first: "Apri modello" stays disabled until a card is clicked.
+    @Published var selectedTemplate: DocumentTemplate.ID?
     @Published var selectedRecent: URL?
 
     /// Refreshes the recent files (they change while the window is closed) and picks the tab.
@@ -267,6 +286,10 @@ final class WelcomeModel: ObservableObject {
     var template: DocumentTemplate? {
         DocumentTemplate.scripts.first { $0.id == selectedTemplate }
     }
+
+    /// Page previews of the cards, parsed once: the example files do not change while the app runs.
+    let previews: [DocumentTemplate.ID: [PreviewLine]] = Dictionary(
+        uniqueKeysWithValues: DocumentTemplate.scripts.map { ($0.id, PreviewLine.lines(of: $0)) })
 }
 
 struct WelcomeView: View {
@@ -293,24 +316,30 @@ struct WelcomeView: View {
             Divider()
 
             HStack {
-                Button {
-                    if let template = model.template { WelcomeActions.newDocument(from: template) }
-                } label: {
+                Button(action: WelcomeActions.newBlankDocument) {
                     HStack(spacing: 6) {
                         Text("Nuovo")
                         Text("⌘N").opacity(0.7)
                     }
                     .padding(.horizontal, 6)
                 }
-                .buttonStyle(.borderedProminent)
                 .keyboardShortcut("n", modifiers: .command)
-                .disabled(model.template == nil)
-                .help(model.template.map { "Nuovo documento dal modello \($0.title)" } ?? "Scegli un modello")
-
-                Spacer()
+                .help("Nuovo documento vuoto")
 
                 Button("Apri…") { WelcomeActions.showOpenPanel(for: NSApp.keyWindow) }
                     .keyboardShortcut("o", modifiers: .command)
+
+                Spacer()
+
+                if model.tab == .templates {
+                    Button("Apri modello") {
+                        if let template = model.template { WelcomeActions.newDocument(from: template) }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(model.selectedTemplate == nil)
+                    .help(model.template.map { "Nuovo documento dal modello \($0.title)" } ?? "Scegli un modello")
+                }
             }
             .controlSize(.large)
             .padding(12)
@@ -321,20 +350,28 @@ struct WelcomeView: View {
     // MARK: Templates
 
     private var templateList: some View {
-        List(selection: $model.selectedTemplate) {
-            Section("SCRIPT") {
-                ForEach(DocumentTemplate.scripts) { template in
-                    TemplateRow(template: template).tag(template.id)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Scegli un modello")
+                    .font(.title2.weight(.semibold))
+
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: TemplateCard.pageSize.width + 24), spacing: 20)],
+                          alignment: .center, spacing: 20) {
+                    ForEach(DocumentTemplate.scripts) { template in
+                        TemplateCard(template: template, lines: model.previews[template.id] ?? [],
+                                     isSelected: model.selectedTemplate == template.id)
+                            // Double-click creates the document; the single click selects at once.
+                            .onTapGesture(count: 2) { WelcomeActions.newDocument(from: template) }
+                            .simultaneousGesture(TapGesture().onEnded { model.selectedTemplate = template.id })
+                    }
                 }
             }
+            .padding(20)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .listStyle(.inset)
-        // Double-click or Return creates the document.
-        .contextMenu(forSelectionType: DocumentTemplate.ID.self) { _ in } primaryAction: { ids in
-            if let id = ids.first, let template = DocumentTemplate.scripts.first(where: { $0.id == id }) {
-                WelcomeActions.newDocument(from: template)
-            }
-        }
+        .background(Color(nsColor: .controlBackgroundColor))
+        // A click outside the cards clears the selection.
+        .onTapGesture { model.selectedTemplate = nil }
     }
 
     // MARK: Recent files
@@ -366,24 +403,132 @@ struct WelcomeView: View {
     }
 }
 
-struct TemplateRow: View {
+/// A template as a page thumbnail with its title centered below; the selected card has an accent ring.
+struct TemplateCard: View {
+    static let pageSize = CGSize(width: 150, height: 200)
+
     let template: DocumentTemplate
+    let lines: [PreviewLine]
+    let isSelected: Bool
 
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: template.symbolName)
-                .font(.system(size: 22))
-                .foregroundStyle(Color.accentColor)
-                .frame(width: 36)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(template.title).font(.headline)
-                Text(template.summary)
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(2)
+        VStack(spacing: 8) {
+            TemplatePage(lines: lines, isScreenplay: template.isScreenplay)
+                .frame(width: Self.pageSize.width, height: Self.pageSize.height)
+                .shadow(color: .black.opacity(0.2), radius: 2, y: 1)
+                .padding(5)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .strokeBorder(isSelected ? Color.accentColor : .clear, lineWidth: 3)
+                }
+
+            Text(template.title)
+                .font(.callout.weight(isSelected ? .semibold : .regular))
+                .multilineTextAlignment(.center)
+                .foregroundStyle(isSelected ? Color.white : Color.primary)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 2)
+                .background(isSelected ? Color.accentColor : .clear, in: Capsule())
+        }
+        .contentShape(Rectangle())
+        .help(template.summary)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(template.title)
+        .accessibilityHint(template.summary)
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+    }
+}
+
+/// One line of a page preview: the parsed kind and its printable text.
+struct PreviewLine: Identifiable {
+    let id: Int
+    let kind: LineKind
+    let text: String
+
+    /// The opening lines of the template laid out like the editor: title, headings, scenes, dialogue.
+    /// Notes, synopses and the rest of the title page are left out; runs of blank lines become one.
+    static func lines(of template: DocumentTemplate, limit: Int = 40) -> [PreviewLine] {
+        let ns = template.text as NSString
+        let parsed = template.isScreenplay ? FountainParser.parse(ns) : MarkdownParser.parse(ns)
+        var result: [PreviewLine] = []
+        for line in parsed where result.count < limit {
+            switch line.kind {
+            case .titleField("title"), .sceneHeading, .action, .character, .parenthetical,
+                 .dialogue, .transition, .centered, .lyrics, .heading, .paragraph, .blockquote, .bullet, .ordered,
+                 .code, .graphicNovelPage, .panel, .balloon:
+                let text = ns.substring(with: line.textRange).replacingOccurrences(of: "*", with: "")
+                result.append(PreviewLine(id: result.count, kind: line.kind, text: text))
+            case .empty:
+                if let last = result.last, last.kind != .empty {
+                    result.append(PreviewLine(id: result.count, kind: .empty, text: ""))
+                }
+            default:
+                continue
             }
         }
-        .padding(.vertical, 6)
+        return result
+    }
+}
+
+/// A miniature white page: Courier for screenplays, serif for prose, clipped at the bottom edge.
+struct TemplatePage: View {
+    let lines: [PreviewLine]
+    let isScreenplay: Bool
+
+    private let fontSize: CGFloat = 5
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 1) {
+            ForEach(lines) { line in
+                row(line)
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.top, 16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .foregroundStyle(Color.black.opacity(0.8))
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: 3))
+        .environment(\.colorScheme, .light)
+    }
+
+    private func font(_ scale: CGFloat = 1, weight: Font.Weight = .regular) -> Font {
+        isScreenplay ? .custom("Courier", size: fontSize * scale).weight(weight)
+                     : .system(size: fontSize * scale, weight: weight, design: .serif)
+    }
+
+    @ViewBuilder
+    private func row(_ line: PreviewLine) -> some View {
+        let text = Text(line.text).lineLimit(3)
+        switch line.kind {
+        case .empty:
+            Color.clear.frame(height: fontSize * 0.6)
+        case .titleField:
+            text.font(font(1.6, weight: .bold)).frame(maxWidth: .infinity).padding(.vertical, 8)
+        case .heading(let level):
+            text.font(font(level == 1 ? 1.8 : 1.3, weight: .bold))
+                .frame(maxWidth: .infinity, alignment: level == 1 ? .center : .leading)
+        case .sceneHeading, .graphicNovelPage:
+            text.font(font(weight: .bold))
+        case .panel:
+            text.font(font(weight: .semibold)).underline()
+        case .character:
+            text.font(font()).padding(.leading, 44)
+        case .parenthetical:
+            text.font(font()).padding(.leading, 34)
+        case .dialogue:
+            text.font(font()).padding(.horizontal, 22)
+        case .transition:
+            text.font(font()).frame(maxWidth: .infinity, alignment: .trailing)
+        case .centered:
+            text.font(font()).frame(maxWidth: .infinity)
+        case .blockquote, .balloon:
+            text.font(font()).italic(line.kind == .blockquote).padding(.leading, 10)
+        case .bullet, .ordered:
+            Text("•  " + line.text).font(font()).lineLimit(3).padding(.leading, 6)
+        default:
+            text.font(font())
+        }
     }
 }
 

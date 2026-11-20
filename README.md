@@ -13,8 +13,8 @@ cd Scripta
 
 - **Due modalità di scrittura**: sceneggiatura (Fountain) e prosa (Markdown), con evidenziazione della sintassi in tempo reale.
 - **Supporto graphic novel**: tavole (`# Tav. 1`), vignette (`.Vig. 1`) e balloon (`**NOME**: testo`) in entrambe le modalità.
-- **Finestra di benvenuto e modelli** (macOS): all'avvio, se non apri un file, puoi riaprire un documento recente o crearne uno nuovo da un modello (Sceneggiatura, Graphic novel, Manoscritto / Romanzo).
-- **Outline navigabile**: scene, sezioni, titoli, tavole e vignette.
+- **Finestra di benvenuto e modelli** (macOS): all'avvio, se non apri un file, puoi riaprire un documento recente o crearne uno nuovo da un modello (Sceneggiatura, Graphic novel, Manoscritto / Romanzo), scelto da card con l'anteprima della pagina.
+- **Outline navigabile**: scene, sezioni, titoli, tavole e vignette; su macOS la voce evidenziata segue il cursore e un clic (o le frecce) porta l'editor al punto scelto.
 - **Analisi dei personaggi**: numero di battute e parole per ciascun personaggio.
 - **Export** in PDF (US Letter o A4) su macOS e Linux; HTML, Markdown e Fountain solo su macOS.
 - **Anteprima Quick Look** dei file `.fountain` nel Finder (solo macOS).
@@ -23,32 +23,40 @@ cd Scripta
 
 ## Struttura del progetto
 
+Il codice condiviso sta in `Sources/`; tutto ciò che riguarda un solo sistema operativo (front end, moduli di sistema, risorse, script di build e di packaging) sta nella cartella di quel sistema nella radice: `macOS/`, `Linux/`, `Windows/`.
+
 ```
-Package.swift
-Sources/
-├── ScriptaCore/   Libreria condivisa: parser Fountain/Markdown, outline, analisi personaggi (tutte le piattaforme)
-├── ScriptaApp/    App macOS: interfaccia SwiftUI/AppKit, editor ed export (solo macOS)
-├── ScriptaCLI/    Eseguibile `scripta` (tutte le piattaforme)
-├── ScriptaGTK/    App Linux `scripta-gtk`: interfaccia GTK 4 (solo Linux)
-├── ScriptaWin/    Front end Windows `ScriptaWin` (solo Windows, per ora a riga di comando)
-├── CGtk/          Modulo di sistema che espone GTK 4 a Swift (pkg-config `gtk4`)
-├── CWebKit/       Modulo di sistema WebKitGTK 6.0, per l'export PDF (pkg-config `webkitgtk-6.0`)
-└── CPoppler/      Modulo di sistema Poppler GLib, per numeri di pagina e metadati del PDF
-QuickLook/         Estensione Quick Look (macOS)
-Resources/         Info.plist del bundle dell'app
-Resources/Linux/   File .desktop, icona, install.sh e AppRun per la GUI Linux
-Examples/          Esempi e modelli della finestra di benvenuto: sceneggiatura, graphic novel (.fountain), romanzo (.md)
-LICENSE            Licenza MIT
-build-app.sh       Build di Scripta.app (macOS)
-build-linux.sh     Build della CLI (Linux, ma funziona anche su macOS)
-package-dmg.sh     Pacchetto Scripta-macOS-arm64.dmg
-package-linux-gui.sh  Pacchetto Scripta-GUI-Linux-x86_64.tar.gz (e AppImage opzionale)
-package-deb.sh     Pacchetto Debian/Ubuntu scripta-gtk_<versione>_<arch>.deb
-package-rpm.sh     Pacchetto Fedora/RHEL scripta-gtk-<versione>-<release>.<arch>.rpm
-scripta-gtk.spec   Specifica RPM usata da package-rpm.sh
-build-windows.ps1  Installazione dipendenze (WinGet) e build di ScriptaWin (Windows)
+Package.swift                Pacchetto SwiftPM: i target di ogni piattaforma sono dichiarati solo su quel sistema
+LICENSE                      Licenza MIT (copiata in Sources/ScriptaCore/License.swift)
+Examples/                    Esempi e modelli della finestra di benvenuto: sceneggiatura, graphic novel (.fountain), romanzo (.md)
+Sources/                     Codice condiviso, compilato su tutte le piattaforme
+├── ScriptaCore/             Libreria: parser Fountain/Markdown, outline, personaggi, statistiche, export HTML
+└── ScriptaCLI/              Eseguibile `scripta`
+macOS/
+├── ScriptaApp/              App SwiftUI/AppKit: editor, finestra di benvenuto, export
+├── QuickLook/               Estensione Quick Look per i file .fountain
+├── Resources/               Info.plist del bundle (tipi di documento, UTI) e icona dell'app
+├── build-app.sh             Build di Scripta.app (con l'estensione Quick Look)
+└── package-dmg.sh           Pacchetto build/Scripta-macOS-arm64.dmg
+Linux/
+├── ScriptaGTK/              App `scripta-gtk`: interfaccia GTK 4
+├── CGtk/                    Modulo di sistema GTK 4 (pkg-config `gtk4`)
+├── CWebKit/                 Modulo di sistema WebKitGTK 6.0, per l'export PDF (pkg-config `webkitgtk-6.0`)
+├── CPoppler/                Modulo di sistema Poppler GLib, per numeri di pagina e metadati del PDF
+├── Resources/               File .desktop, icona, install.sh e AppRun
+├── build-linux.sh           Build della CLI (funziona anche su macOS)
+├── package-linux-gui.sh     Pacchetto build/Scripta-GUI-Linux-x86_64.tar.gz (e AppImage opzionale)
+├── package-deb.sh           Pacchetto Debian/Ubuntu Linux/scripta-gtk_<versione>-<revisione>_<arch>.deb
+├── package-rpm.sh           Pacchetto Fedora/RHEL Linux/scripta-gtk-<versione>-<release>.<dist>.<arch>.rpm
+├── scripta-gtk.spec         Specifica RPM usata da package-rpm.sh
+└── scripta-gtk_*.deb, scripta-gtk-*.rpm   Pacchetti generati dagli script qui sopra
+Windows/
+├── ScriptaWin/              Front end `ScriptaWin` (per ora a riga di comando)
+└── build-windows.ps1        Installazione dipendenze (WinGet) e build di ScriptaWin
 .github/workflows/windows-build.yml  Build di ScriptaWin su GitHub Actions (windows-latest)
 ```
+
+Gli script si possono lanciare da qualsiasi cartella: si spostano da soli nella radice del repository, dove lavora `swift build`. I risultati finiscono in `build/` (app, DMG, archivi Linux) e, per i pacchetti `.deb` e `.rpm`, in `Linux/`. Gli esempi dei comandi qui sotto partono dalla radice del repository.
 
 ### Matrice di compatibilità
 
@@ -72,33 +80,33 @@ build-windows.ps1  Installazione dipendenze (WinGet) e build di ScriptaWin (Wind
 
 | Pacchetto                                 | Piattaforma                     | Script                 |
 |-------------------------------------------|---------------------------------|------------------------|
-| `Scripta-macOS-arm64.dmg`                 | macOS 15+, Apple Silicon        | `package-dmg.sh`       |
-| `scripta-gtk_<versione>-1_amd64.deb`      | Debian 12+, Ubuntu 24.04+       | `package-deb.sh`       |
-| `scripta-gtk-<versione>-1.<dist>.x86_64.rpm` | Fedora 39+, RHEL 10 e derivate | `package-rpm.sh`       |
-| `Scripta-GUI-Linux-x86_64.tar.gz`, AppImage | Linux x86_64 con GTK 4        | `package-linux-gui.sh` |
-| `ScriptaWin.exe` (artefatto di build)     | Windows x64                     | `build-windows.ps1`, GitHub Actions |
+| `Scripta-macOS-arm64.dmg`                 | macOS 15+, Apple Silicon        | `macOS/package-dmg.sh` |
+| `scripta-gtk_<versione>-1_amd64.deb`      | Debian 12+, Ubuntu 24.04+       | `Linux/package-deb.sh` |
+| `scripta-gtk-<versione>-1.<dist>.x86_64.rpm` | Fedora 39+, RHEL 10 e derivate | `Linux/package-rpm.sh` |
+| `Scripta-GUI-Linux-x86_64.tar.gz`, AppImage | Linux x86_64 con GTK 4        | `Linux/package-linux-gui.sh` |
+| `ScriptaWin.exe` (artefatto di build)     | Windows x64                     | `Windows/build-windows.ps1`, GitHub Actions |
 
-Le interfacce grafiche sono dichiarate in `Package.swift` in base al sistema su cui si compila: `ScriptaApp` solo su macOS, `ScriptaGTK` (con i moduli di sistema `CGtk`, `CWebKit` e `CPoppler`) solo su Linux, `ScriptaWin` (solo `ScriptaCore`) solo su Windows. Entrambe usano `ScriptaCore` per parsing, outline, personaggi e statistiche (`DocumentStatistics`, condivisa anche con la CLI). Su Linux, `swift build` senza `--product` compila anche la GUI e richiede quindi GTK 4; `swift build --product scripta` compila solo la CLI.
+Le interfacce grafiche (in `macOS/`, `Linux/` e `Windows/`) sono dichiarate in `Package.swift` in base al sistema su cui si compila: `ScriptaApp` solo su macOS, `ScriptaGTK` (con i moduli di sistema `CGtk`, `CWebKit` e `CPoppler`) solo su Linux, `ScriptaWin` (solo `ScriptaCore`) solo su Windows. Entrambe usano `ScriptaCore` per parsing, outline, personaggi e statistiche (`DocumentStatistics`, condivisa anche con la CLI). Su Linux, `swift build` senza `--product` compila anche la GUI e richiede quindi GTK 4; `swift build --product scripta` compila solo la CLI.
 
 ## Requisiti
 
 - **macOS**: macOS 15 o successivo, Apple Silicon, Xcode o Command Line Tools con Swift 6.0+.
 - **Linux**: toolchain Swift 6.0+ ([swift.org/install](https://www.swift.org/install/)).
 - **GUI Linux**: in più, GTK 4.6 o successivo, WebKitGTK 6.0 e Poppler (per l'esportazione PDF) con i file di sviluppo e `pkg-config` (Ubuntu 24.04+, Debian 12+, Fedora 39+).
-- **Windows**: Windows 10/11 x64, Visual Studio 2022 (MSVC x64/ARM64 e Windows 11 SDK) e la toolchain Swift, entrambi installati da `build-windows.ps1` con WinGet.
+- **Windows**: Windows 10/11 x64, Visual Studio 2022 (MSVC x64/ARM64 e Windows 11 SDK) e la toolchain Swift, entrambi installati da `Windows/build-windows.ps1` con WinGet.
 
 ## Compilare l'app su macOS
 
 ```bash
-./build-app.sh            # build di release
-./build-app.sh debug      # build di debug, più rapida
+./macOS/build-app.sh            # build di release
+./macOS/build-app.sh debug      # build di debug, più rapida
 ```
 
 Lo script:
 
 1. compila il prodotto `ScriptaApp` con Swift Package Manager (arm64);
-2. assembla il bundle in `build/Scripta.app`, copiando la cartella `Examples/` in `Contents/Resources/Examples` (sono i modelli della finestra di benvenuto);
-3. compila e incorpora l'estensione Quick Look (`Contents/PlugIns/ScriptaQuickLook.appex`);
+2. assembla il bundle in `build/Scripta.app` con `macOS/Resources/Info.plist` e l'icona, copiando la cartella `Examples/` in `Contents/Resources/Examples` (sono i modelli della finestra di benvenuto);
+3. compila e incorpora l'estensione Quick Look (`Contents/PlugIns/ScriptaQuickLook.appex`) da `macOS/QuickLook/PreviewProvider.swift`, insieme ai sorgenti di `Sources/ScriptaCore` e a `macOS/ScriptaApp/Export/ContentTypes.swift`;
 4. firma il bundle (firma ad-hoc) e lo registra presso Launch Services.
 
 Per avviare l'app:
@@ -106,6 +114,14 @@ Per avviare l'app:
 ```bash
 open build/Scripta.app
 ```
+
+### Indice (Outline)
+
+La barra laterale **Indice** elenca scene e sezioni (sceneggiatura) o titoli (prosa), più tavole e vignette dei fumetti.
+
+- La voce evidenziata segue il cursore: è quella della scena o del titolo in cui stai scrivendo, e l'elenco scorre per tenerla visibile.
+- Un clic su una voce, o le frecce ↑/↓ con l'indice attivo, sposta il cursore all'inizio di quella voce, scorre l'editor fino a lì e la evidenzia brevemente. Un nuovo clic sulla voce già attiva ci riporta il cursore.
+- Se è aperta l'anteprima, Scripta torna prima all'editor, così il salto è visibile. Con lo scorrimento a macchina da scrivere attivo, la riga raggiunta resta al centro della finestra.
 
 ### Finestra di benvenuto e modelli
 
@@ -119,7 +135,7 @@ Se all'avvio non viene aperto alcun file, Scripta mostra la finestra **Benvenuto
 Dal menu la finestra viene portata in primo piano anche con altri documenti aperti, e il documento creato da un modello si aggiunge a quelli già aperti senza chiuderli né toccarne le modifiche non salvate.
 
 - **Recenti**: i documenti aperti di recente; doppio clic (o Invio) per riaprirli.
-- **Modelli**, sezione **SCRIPT**:
+- **Modelli**: sotto l'intestazione **Scegli un modello**, ogni modello è una card con l'anteprima in miniatura della prima pagina (Courier per le sceneggiature, carattere con grazie per la prosa) e il nome centrato sotto. Un clic seleziona la card, evidenziata da un bordo nel colore di sistema; un clic fuori dalle card annulla la selezione; doppio clic crea subito il documento dal modello.
 
   | Modello | File di partenza | Formato |
   |---------|------------------|---------|
@@ -127,7 +143,10 @@ Dal menu la finestra viene portata in primo piano anche con altri documenti aper
   | Graphic novel | `Examples/Esempio_GraphicNovel.fountain` | Fountain: tavole, vignette, didascalie e balloon |
   | Manoscritto / Romanzo | `Examples/Esempio.md` | Markdown: capitoli, paragrafi, citazioni, elenchi |
 
-- **Nuovo ⌘N** crea un documento *senza titolo* con il testo del modello selezionato: al primo salvataggio Scripta chiede dove salvarlo, e il file di esempio non viene mai modificato. **Apri…** apre un file esistente.
+- Barra inferiore:
+  - **Nuovo ⌘N** crea un documento vuoto *senza titolo*, come **Archivio → Nuovo**.
+  - **Apri…** (⌘O) apre un file esistente.
+  - **Apri modello** (Invio), visibile nella scheda **Modelli**, crea un documento *senza titolo* con il testo del modello selezionato. È attivo solo quando una card è selezionata: all'apertura della finestra nessun modello è selezionato. Al primo salvataggio Scripta chiede dove salvarlo, e il file di esempio non viene mai modificato.
 
 I modelli vengono cercati nelle risorse dell'app (`Contents/Resources/Examples`) e, nelle build di debug avviate con `swift run`, nella cartella `Examples/` del repository. Se il file non è disponibile, per esempio con un eseguibile di release avviato fuori dal bundle, Scripta crea il documento da un testo di partenza predefinito per quel modello, senza errori.
 
@@ -140,8 +159,8 @@ build/Scripta.app/Contents/MacOS/Scripta --export Examples/Esempio_Cinematografi
 ## Compilare e usare la CLI su Linux
 
 ```bash
-./build-linux.sh          # build di release
-./build-linux.sh debug    # build di debug
+./Linux/build-linux.sh          # build di release
+./Linux/build-linux.sh debug    # build di debug
 ```
 
 In alternativa si può usare direttamente SwiftPM:
@@ -234,8 +253,8 @@ La GUI richiede almeno GTK 4.6. Alcune API usate (`GtkFileChooserNative`, `GtkMe
 `ScriptaWin` è il punto di partenza del front end Windows: per ora è un programma da console che stampa le statistiche di un file con `ScriptaCore`. Da PowerShell, nella cartella del progetto:
 
 ```powershell
-.\build-windows.ps1              # installa Visual Studio 2022 e Swift con WinGet, poi compila
-.\build-windows.ps1 -SkipSetup   # solo compilazione (dipendenze già installate)
+.\Windows\build-windows.ps1              # installa Visual Studio 2022 e Swift con WinGet, poi compila
+.\Windows\build-windows.ps1 -SkipSetup   # solo compilazione (dipendenze già installate)
 ```
 
 Lo script installa i componenti con WinGet (serve l'elevazione UAC per Visual Studio):
@@ -265,7 +284,7 @@ Le release pubblicate nella pagina [Releases](https://github.com/Finch74/Scripta
 
 Se la release include anche `Scripta-GUI-x86_64.AppImage`, è la stessa GUI in un singolo file eseguibile (richiede comunque GTK 4 installato nel sistema).
 
-La CLI `scripta` non è distribuita come pacchetto a sé: si compila con `./build-linux.sh` (vedi [Compilare e usare la CLI su Linux](#compilare-e-usare-la-cli-su-linux)).
+La CLI `scripta` non è distribuita come pacchetto a sé: si compila con `Linux/build-linux.sh` (vedi [Compilare e usare la CLI su Linux](#compilare-e-usare-la-cli-su-linux)).
 
 Per una versione specifica sostituisci `latest/download` con `download/<tag>`. Per esempio:
 `https://github.com/Finch74/Scripta/releases/download/v1.0.0/Scripta-macOS-arm64.dmg`
@@ -299,13 +318,13 @@ Per installarla per tutti gli utenti: `sudo PREFIX=/usr/local ./install.sh`.
 **Debian/Ubuntu (.deb).** Installa `scripta-gtk` in `/usr/bin`, con voce nel menu delle applicazioni:
 
 ```bash
-sudo apt install ./scripta-gtk_1.0-1_amd64.deb
+sudo apt install ./Linux/scripta-gtk_1.0-1_amd64.deb   # dalla radice del repository, o il percorso del file scaricato
 ```
 
 **Fedora/RHEL (.rpm).** Stessa installazione per le distribuzioni basate su RPM:
 
 ```bash
-sudo dnf install ./scripta-gtk-1.0-1.fc43.x86_64.rpm   # il suffisso dipende dalla distribuzione di build
+sudo dnf install ./Linux/scripta-gtk-1.0-1.fc43.x86_64.rpm   # il suffisso dipende dalla distribuzione di build
 ```
 
 In entrambi i casi il runtime Swift è incluso nell'eseguibile; dopo l'installazione il pacchetto controlla se Swift è presente e, se manca, prova a installarlo con [swiftly](https://www.swift.org/install/) per l'utente che ha lanciato `sudo` (serve solo per ricompilare Scripta, non per usarlo; un errore viene segnalato ma non blocca l'installazione).
@@ -319,18 +338,18 @@ I pacchetti vengono creati nella cartella `build/`.
 **DMG per macOS**, da eseguire su un Mac:
 
 ```bash
-./package-dmg.sh
+./macOS/package-dmg.sh
 ```
 
-Lo script esegue `./build-app.sh` in modalità release e copia in una cartella temporanea l'app, il collegamento `Applications` e la cartella `Examples/`. Poi crea un'immagine compressa (UDZO) con `diskutil image`, oppure con `hdiutil` sulle versioni di macOS precedenti, e infine la verifica. Risultato: `build/Scripta-macOS-arm64.dmg`, che una volta aperto mostra `Scripta.app`, `Applications` ed `Examples`.
+Lo script esegue `macOS/build-app.sh` in modalità release e copia in una cartella temporanea l'app, il collegamento `Applications` e la cartella `Examples/`. Poi crea un'immagine compressa (UDZO) con `diskutil image`, oppure con `hdiutil` sulle versioni di macOS precedenti, e infine la verifica. Risultato: `build/Scripta-macOS-arm64.dmg`, che una volta aperto mostra `Scripta.app`, `Applications` ed `Examples`.
 
-**CLI per Linux** (anche su macOS), senza pacchetto: `./build-linux.sh` compila `scripta` in release e ne stampa il percorso (vedi sopra).
+**CLI per Linux** (anche su macOS), senza pacchetto: `Linux/build-linux.sh` compila `scripta` in release e ne stampa il percorso (vedi sopra).
 
 **Archivio della GUI per Linux** (ed eventuale AppImage):
 
 ```bash
-./package-linux-gui.sh              # crea build/Scripta-GUI-Linux-<arch>.tar.gz
-APPIMAGE=1 ./package-linux-gui.sh   # crea anche build/Scripta-GUI-<arch>.AppImage
+./Linux/package-linux-gui.sh              # crea build/Scripta-GUI-Linux-<arch>.tar.gz
+APPIMAGE=1 ./Linux/package-linux-gui.sh   # crea anche build/Scripta-GUI-<arch>.AppImage
 ```
 
 - **Su Linux** usa la toolchain Swift locale e richiede i file di sviluppo di GTK 4, WebKitGTK 6.0 e Poppler (`libgtk-4-dev libwebkitgtk-6.0-dev libpoppler-glib-dev`, oppure `gtk4-devel webkitgtk6.0-devel poppler-glib-devel`) e `pkg-config`.
@@ -342,34 +361,34 @@ APPIMAGE=1 ./package-linux-gui.sh   # crea anche build/Scripta-GUI-<arch>.AppIma
 **Pacchetto Debian/Ubuntu**, da eseguire su Debian o Ubuntu come utente normale (non con `sudo`):
 
 ```bash
-./package-deb.sh    # crea scripta-gtk_<versione>-1_<arch>.deb nella cartella del progetto
+./Linux/package-deb.sh    # crea Linux/scripta-gtk_<versione>-1_<arch>.deb
 ```
 
-Se mancano, installa Swift con swiftly e le dipendenze di build con `apt-get` (`INSTALL_DEPS=0` per disattivarlo). Variabili: `VERSION`, `REVISION`, `MAINTAINER`.
+Se mancano, installa Swift con swiftly e le dipendenze di build con `apt-get` (`INSTALL_DEPS=0` per disattivarlo). Variabili: `VERSION` (predefinita: la versione in `macOS/Resources/Info.plist`), `REVISION`, `MAINTAINER`. Come `package-rpm.sh`, si ferma se `Sources/ScriptaCore/License.swift` non coincide con `LICENSE`.
 
 **Pacchetto RPM (Fedora/RHEL)**, da eseguire come utente normale con `rpm-build` installato:
 
 ```bash
 sudo dnf install rpm-build
-./package-rpm.sh    # crea scripta-gtk-<versione>-1.<dist>.<arch>.rpm nella cartella del progetto
+./Linux/package-rpm.sh    # crea Linux/scripta-gtk-<versione>-1.<dist>.<arch>.rpm
 ```
 
-Lo script installa Swift con swiftly e le dipendenze di build (`gtk4-devel`, `webkitgtk6.0-devel`, `poppler-glib-devel`) con `dnf` se mancano, crea l'archivio dei sorgenti dai file tracciati da git e lancia `rpmbuild` con [`scripta-gtk.spec`](scripta-gtk.spec) in `build/rpm`, cancellata alla fine. Variabili: `VERSION`, `INSTALL_DEPS=0`, `NODEPS=1`. Funziona anche su Debian/Ubuntu (salta il controllo delle `BuildRequires`), ma l'RPM risultante richiede la glibc della macchina di build: per distribuirlo, compilalo sulla versione di Fedora/RHEL di destinazione (anche in un container o con `mock`).
+Lo script installa Swift con swiftly e le dipendenze di build (`gtk4-devel`, `webkitgtk6.0-devel`, `poppler-glib-devel`) con `dnf` se mancano, crea l'archivio dei sorgenti dai file tracciati da git (senza `macOS/` e `Windows/`) e lancia `rpmbuild` con [`scripta-gtk.spec`](Linux/scripta-gtk.spec) in `build/rpm`, cancellata alla fine. Variabili: `VERSION`, `INSTALL_DEPS=0`, `NODEPS=1`. Funziona anche su Debian/Ubuntu (salta il controllo delle `BuildRequires`), ma l'RPM risultante richiede la glibc della macchina di build: per distribuirlo, compilalo sulla versione di Fedora/RHEL di destinazione (anche in un container o con `mock`).
 
 ### Pubblicare una release
 
 I link di download funzionano solo se i file allegati alla release hanno esattamente i nomi `Scripta-macOS-arm64.dmg` e `Scripta-GUI-Linux-x86_64.tar.gz`. Sono i nomi che producono gli script. Per esempio, con la [GitHub CLI](https://cli.github.com):
 
 ```bash
-./package-dmg.sh
-APPIMAGE=1 ./package-linux-gui.sh
+./macOS/package-dmg.sh
+APPIMAGE=1 ./Linux/package-linux-gui.sh
 git tag v1.0.0 && git push origin v1.0.0
 gh release create v1.0.0 --repo Finch74/Scripta --title "Scripta 1.0.0" --generate-notes \
     build/Scripta-macOS-arm64.dmg \
     build/Scripta-GUI-Linux-x86_64.tar.gz build/Scripta-GUI-x86_64.AppImage
 ```
 
-I pacchetti `.deb` e `.rpm` vanno generati sulla distribuzione di destinazione (`./package-deb.sh`, `./package-rpm.sh`) e allegati allo stesso modo.
+I pacchetti `.deb` e `.rpm` vanno generati sulla distribuzione di destinazione (`Linux/package-deb.sh`, `Linux/package-rpm.sh`) e allegati allo stesso modo.
 
 ## Usare ScriptaCore in un altro progetto
 

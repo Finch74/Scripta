@@ -47,7 +47,9 @@ struct EditorView: View {
     var body: some View {
         NavigationSplitView(columnVisibility: $state.sidebarVisibility) {
             OutlineSidebar(items: DocumentOutline.items(in: document.text, mode: mode), mode: mode,
-                           selection: $state.outlineSelection) { item in
+                           navigator: state.navigator) { [state] item in
+                // The caret lives in the editor: leave the preview so the jump is visible.
+                if state.viewMode == .preview { state.viewMode = .edit }
                 state.navigator.reveal(location: item.location)
             }
             .navigationSplitViewColumnWidth(min: 180, ideal: 240, max: 360)
@@ -187,7 +189,6 @@ final class EditorState: ObservableObject {
     @Published var isExporting = false
     @Published var exportError: String?
     @Published var sidebarVisibility: NavigationSplitViewVisibility = .all
-    @Published var outlineSelection: OutlineItem.ID?
     @Published var isEditingGoal = false
     @Published var viewMode: EditorViewMode = .edit
     @Published var isShowingCharacters = false
@@ -200,11 +201,28 @@ final class EditorState: ObservableObject {
 }
 
 /// Navigable index of the document: scenes and sections (Fountain) or headings (Markdown).
+/// The highlighted entry follows the editor caret; choosing an entry moves the caret there.
 struct OutlineSidebar: View {
     let items: [OutlineItem]
     let mode: DocumentMode
-    @Binding var selection: OutlineItem.ID?
+    @ObservedObject var navigator: EditorNavigator
     let onSelect: (OutlineItem) -> Void
+
+    /// The entry containing the caret: the last one starting at or before it.
+    private var activeID: OutlineItem.ID? {
+        items.last { $0.location <= navigator.caretLocation }?.id
+    }
+
+    /// Reads the caret-derived entry; only a write that picks a *different* entry moves the caret.
+    /// Item IDs are text offsets, so every edit renumbers the entries after it, and the List may write
+    /// the current selection back while it reloads its rows: treating that echo as a choice would
+    /// pull the caret to the start of the scene. Re-clicking the active entry is the tap gesture's job.
+    private var selection: Binding<OutlineItem.ID?> {
+        Binding(get: { activeID }, set: { id in
+            guard let id, id != activeID, let item = items.first(where: { $0.id == id }) else { return }
+            onSelect(item)
+        })
+    }
 
     var body: some View {
         Group {
@@ -217,19 +235,23 @@ struct OutlineSidebar: View {
                          : "Aggiungi titoli con #.")
                 }
             } else {
-                List(selection: $selection) {
-                    ForEach(items) { item in
-                        OutlineRow(item: item)
-                            .tag(item.id)
-                            .contentShape(Rectangle())
-                            // A tap (not just a selection change) so re-clicking the same entry jumps again.
-                            .onTapGesture {
-                                selection = item.id
-                                onSelect(item)
-                            }
+                ScrollViewReader { proxy in
+                    List(selection: selection) {
+                        ForEach(items) { item in
+                            OutlineRow(item: item)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
+                                .tag(item.id)
+                                // Simultaneous, so the List still handles the selection itself; this only
+                                // makes re-clicking the already active entry jump back to it.
+                                .simultaneousGesture(TapGesture().onEnded { onSelect(item) })
+                        }
+                    }
+                    .listStyle(.sidebar)
+                    .onChange(of: activeID) { _, id in
+                        if let id { proxy.scrollTo(id) }
                     }
                 }
-                .listStyle(.sidebar)
             }
         }
         .navigationTitle("Indice")

@@ -1,4 +1,4 @@
-# Builds ScriptaWin (ScriptaCore + Sources/ScriptaWin) on Windows with Swift Package Manager.
+# Builds ScriptaWin (ScriptaCore + Windows/ScriptaWin) on Windows with Swift Package Manager.
 #
 # Steps:
 #   1. Visual Studio 2022 Community with the MSVC tools (x64 and ARM64) and the Windows 11 SDK,
@@ -6,8 +6,8 @@
 #   2. Swift toolchain, installed with WinGet.
 #   3. swift build -c release --product ScriptaWin
 #
-# Usage (PowerShell):  .\build-windows.ps1            install the dependencies, then build
-#                      .\build-windows.ps1 -SkipSetup  build only (dependencies already installed)
+# Usage (PowerShell):  .\Windows\build-windows.ps1            install the dependencies, then build
+#                      .\Windows\build-windows.ps1 -SkipSetup  build only (dependencies already installed)
 # Installing Visual Studio requires administrator rights: WinGet asks for elevation (UAC) if needed.
 [CmdletBinding()]
 param(
@@ -15,7 +15,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-Set-Location -Path $PSScriptRoot
+# Paths and `swift build` are relative to the repository root, one level up from this script.
+Set-Location -Path (Join-Path $PSScriptRoot '..')
 
 if (-not $SkipSetup) {
     if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {

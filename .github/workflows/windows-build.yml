@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup dipendenze e build (build-windows.ps1)
+      - name: Setup dipendenze e build (Windows/build-windows.ps1)
         shell: pwsh
-        run: ./build-windows.ps1
+        run: ./Windows/build-windows.ps1
 
       - name: Copia dell'eseguibile
         shell: pwsh

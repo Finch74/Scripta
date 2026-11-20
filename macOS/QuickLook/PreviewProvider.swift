@@ -5,7 +5,7 @@ import UniformTypeIdentifiers
 /// Quick Look preview (space bar in Finder) for Fountain and Markdown files: the same formatted
 /// HTML as Scripta's preview and HTML export, rendered by Quick Look's own web view.
 ///
-/// Built by build-app.sh together with the app's parsing and export sources.
+/// Built by macOS/build-app.sh together with the app's parsing and export sources.
 final class PreviewProvider: QLPreviewProvider, QLPreviewingController {
     func providePreview(for request: QLFilePreviewRequest) async throws -> QLPreviewReply {
         let url = request.fileURL

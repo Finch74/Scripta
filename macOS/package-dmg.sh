@@ -3,11 +3,12 @@
 # a compressed disk image with the app, a symlink to /Applications for drag-and-drop install
 # and the Examples folder.
 set -euo pipefail
-cd "$(dirname "$0")"
+# Paths below are relative to the repository root, one level up from this script.
+cd "$(dirname "$0")/.."
 
 [ "$(uname -s)" = "Darwin" ] || { echo "package-dmg.sh richiede macOS." >&2; exit 1; }
 
-./build-app.sh release
+macOS/build-app.sh release
 
 APP="build/Scripta.app"
 DMG="build/Scripta-macOS-arm64.dmg"
